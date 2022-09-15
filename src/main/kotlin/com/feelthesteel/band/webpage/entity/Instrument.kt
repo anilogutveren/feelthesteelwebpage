@@ -1,5 +1,7 @@
 package com.feelthesteel.band.webpage.entity
-
+/*
+ * Enum is used
+ */
 enum class Instrument(type: String, brand: String) {
     GUITAR("Normal", "Tender"), DRUM("Acoustic", "Yamaha"), MICROPHONE("Allround", "Sennheiser");
 

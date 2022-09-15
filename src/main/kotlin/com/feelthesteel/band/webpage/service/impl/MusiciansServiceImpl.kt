@@ -2,6 +2,7 @@ package com.feelthesteel.band.webpage.service.impl
 
 import com.feelthesteel.band.webpage.entity.Instrument
 import com.feelthesteel.band.webpage.entity.MusicianEntity
+import com.feelthesteel.band.webpage.exception.FtsAppCustomException
 import com.feelthesteel.band.webpage.repo.MusicianRepository
 import com.feelthesteel.band.webpage.service.IMusicianService
 import org.slf4j.Logger
@@ -14,23 +15,28 @@ class MusiciansServiceImpl(val repository: MusicianRepository) : IMusicianServic
     val logger: Logger = LoggerFactory.getLogger(this.javaClass)
 
     override fun saveMusician(musicianEntity: MusicianEntity) {
-        repository.save(musicianEntity)
         logger.info("Musician is saved")
+        repository.save(musicianEntity)
+    }
+
+    override fun saveMultipleMusicians(musicianEntities: List<MusicianEntity>) {
+        logger.info("Musicians are saved")
+        repository.saveAll(musicianEntities)
     }
 
     override fun deleteAllMusicians() {
-        repository.deleteAll()
         logger.info("All musicians are deleted")
+        repository.deleteAll()
     }
 
     override fun findMusicianByNameAndInstrument(name: String, instrument: Instrument): MusicianEntity {
+        logger.info("Musician will be found")
         return repository.findMusicianByNameAndInstrument(name, instrument)
-            ?: throw IllegalStateException("No musician is found under given name and instrument")
-        logger.info("Musician is found")
+            ?: throw FtsAppCustomException("No musician is found under given name and instrument")
     }
 
     override fun getAllMusicians(): MutableList<MusicianEntity> {
+        logger.info("All musicians will be listed")
         return repository.findAll()
-        logger.info("All musicians are listed")
     }
 }

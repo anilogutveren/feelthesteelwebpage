@@ -1,0 +1,36 @@
+server:
+    port: 8087
+management:
+    security:
+        enabled: false
+security:
+    basic:
+        enabled: false
+    ignored: /**
+spring:
+    data:
+        jpa:
+            repositories:
+                bootstrap-mode: default
+    datasource:
+        url: jdbc:h2:mem:anilsdb;NON_KEYWORDS=USER
+    h2:
+        console:
+            enabled: true
+    jpa:
+        defer-datasource-initialization: true
+    security:
+        enabled: false
+    session:
+        jdbc:
+            initialize-schema: always
+        store-type: jdbc
+        timeout:
+            seconds: 900
+songs:
+    ownedsongs:
+        - "Devil In my Town"
+    coveredsongs:
+        - "Enter Sandman"
+        - "Mother"
+        - "Seal the Deal"

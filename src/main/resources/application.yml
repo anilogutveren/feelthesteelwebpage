@@ -1,0 +1,14 @@
+management:
+    security:
+        enabled: false
+security:
+    basic:
+        enabled: false
+    ignored: /**
+songs:
+    ownedsongs:
+        - "Devil In my Town"
+    coveredsongs:
+        - "Enter Sandman"
+        - "Mother"
+        - "Seal the Deal"
