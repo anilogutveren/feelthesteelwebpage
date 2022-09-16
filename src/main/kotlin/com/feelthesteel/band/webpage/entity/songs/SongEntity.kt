@@ -8,7 +8,7 @@ import javax.persistence.Table
 
 @Entity
 @Table(name = "songsTable")
-data class Song(
+data class SongEntity(
 
     @Id
     @GeneratedValue
@@ -21,12 +21,11 @@ data class Song(
     var songNumber: Long,
 
     @Column(name = "songGenre")
-    var songGenre: String,
+    var songsGenre: String,
 
     @Column(name = "songsYear")
     var songsYear: Long,
 
-    @Column(name = "isCoveredSong")
-    var isCoveredSong: Boolean
-
+    @Column(name = "isCovered")
+    var isCovered: Boolean
 )
