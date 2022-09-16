@@ -5,23 +5,16 @@ security:
     basic:
         enabled: false
     ignored: /**
+
 spring:
-    data:
-        jpa:
-            repositories:
-                bootstrap-mode: default
-    datasource:
-        url: jdbc:sqlserver://musiciansreposerver.database.windows.net:1433;database=MusiciansRepo;user=musiciansname@musiciansreposerver;password=anilstraining_2022;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;
     jpa:
-        defer-datasource-initialization: true
-    security:
-        enabled: false
-    session:
-        jdbc:
-            initialize-schema: always
-        store-type: jdbc
-        timeout:
-            seconds: 900
+        hibernate:
+            ddl-auto: update
+        database: postgresql
+    datasource:
+        url: jdbc:postgresql://ftspostgresqldb.postgres.database.azure.com:5432/postgres?sslmode=require
+        username: musiciansname
+        password: anilstraining_2022
 songs:
     ownedsongs:
         - "Devil In my Town"
