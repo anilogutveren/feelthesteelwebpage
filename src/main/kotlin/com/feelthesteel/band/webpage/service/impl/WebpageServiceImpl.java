@@ -2,7 +2,7 @@ package com.feelthesteel.band.webpage.service.impl;
 
 import com.feelthesteel.band.webpage.dto.PageCall;
 import com.feelthesteel.band.webpage.event.PageCalledEvent;
-import com.feelthesteel.band.webpage.repo.PageCalledRepository;
+import com.feelthesteel.band.webpage.repository.PageCalledRepository;
 import com.feelthesteel.band.webpage.service.IWebpageService;
 import java.util.Date;
 import javax.servlet.http.HttpServletRequest;

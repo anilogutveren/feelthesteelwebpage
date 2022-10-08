@@ -1,0 +1,1 @@
+insert into user_table (id, password, role, name) values(2,'54321','ADMIN','anil')

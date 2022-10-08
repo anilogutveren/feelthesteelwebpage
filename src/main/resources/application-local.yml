@@ -1,30 +1,28 @@
-management:
-    security:
-        enabled: false
-security:
-    basic:
-        enabled: false
-    ignored: /**
 spring:
-    data:
-        jpa:
-            repositories:
-                bootstrap-mode: default
-    datasource:
-        url: jdbc:h2:mem:ftsdb;NON_KEYWORDS=USER
-    h2:
-        console:
-            enabled: true
-    jpa:
-        defer-datasource-initialization: true
     security:
         enabled: false
+        user:
+            name: admin
+            password: adminPassword
+    jpa:
+        hibernate:
+            ddl-auto: update
+        database: postgresql
+    datasource:
+        url: jdbc:postgresql://localhost:5432/postgres
+        username: musiciansname
+        password: anilstraining_2022
     session:
         jdbc:
             initialize-schema: always
         store-type: jdbc
         timeout:
             seconds: 900
+logging:
+    level:
+        org:
+            springframework:
+                security: DEBUG
 songs:
     ownedsongs:
         - "Devil In my Town"

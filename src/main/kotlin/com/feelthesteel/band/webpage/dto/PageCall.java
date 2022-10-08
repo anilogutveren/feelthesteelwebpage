@@ -49,7 +49,7 @@ public class PageCall implements Serializable {
 
 
     public enum EventType{
-        PAGE_CALLED("Resume Page is called"),
+        PAGE_CALLED("Web Page is called"),
         OTHER("Other event");
 
         private String value;

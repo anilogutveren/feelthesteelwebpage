@@ -1,16 +1,13 @@
-management:
-    security:
-        enabled: false
-security:
-    basic:
-        enabled: false
-    ignored: /**
-
 spring:
+    security:
+        enabled: true
+        user:
+            name: admin
+            password: adminPassword
     jpa:
         hibernate:
             ddl-auto: update
-        database: postgresql
+        database: postgresql   # change with 'jdbc:postgresql://localhost:5432/ftsdb' for in docker-compose generated postgresql
     datasource:
         url: jdbc:postgresql://ftspostgresqldb.postgres.database.azure.com:5432/postgres?sslmode=require
         username: musiciansname

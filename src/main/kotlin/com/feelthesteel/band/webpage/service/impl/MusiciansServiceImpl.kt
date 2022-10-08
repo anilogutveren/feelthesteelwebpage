@@ -1,9 +1,9 @@
 package com.feelthesteel.band.webpage.service.impl
 
-import com.feelthesteel.band.webpage.entity.Instrument
 import com.feelthesteel.band.webpage.entity.MusicianEntity
 import com.feelthesteel.band.webpage.exception.FtsAppCustomException
-import com.feelthesteel.band.webpage.repo.MusicianRepository
+import com.feelthesteel.band.webpage.model.Instrument
+import com.feelthesteel.band.webpage.repository.MusicianRepository
 import com.feelthesteel.band.webpage.service.IMusicianService
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory

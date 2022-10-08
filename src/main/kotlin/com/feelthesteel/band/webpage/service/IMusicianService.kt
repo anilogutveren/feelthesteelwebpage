@@ -1,7 +1,7 @@
 package com.feelthesteel.band.webpage.service
 
-import com.feelthesteel.band.webpage.entity.Instrument
 import com.feelthesteel.band.webpage.entity.MusicianEntity
+import com.feelthesteel.band.webpage.model.Instrument
 
 interface IMusicianService {
     fun saveMusician(musicianEntity: MusicianEntity)

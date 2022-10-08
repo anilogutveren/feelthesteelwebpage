@@ -1,8 +1,8 @@
 package com.feelthesteel.band.webpage.service.impl
 
-import com.feelthesteel.band.webpage.entity.songs.SongEntity
+import com.feelthesteel.band.webpage.entity.SongEntity
 import com.feelthesteel.band.webpage.exception.FtsAppCustomException
-import com.feelthesteel.band.webpage.repo.SongsRepository
+import com.feelthesteel.band.webpage.repository.SongsRepository
 import com.feelthesteel.band.webpage.service.ISongsService
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -14,7 +14,7 @@ class SongsServiceImpl(val repository: SongsRepository) : ISongsService {
     val logger: Logger = LoggerFactory.getLogger(this.javaClass)
     override fun saveSongs(song: SongEntity): SongEntity {
         logger.info("Song $song will be saved")
-        return repository.save(song) // ?: throw FtsAppCustomException("Song $song cannot be registered")
+        return repository.save(song) //  ?: throw FtsAppCustomException("Song $song cannot be registered")
     }
 
     override fun findCoveredSongs(isCovered: Boolean): SongEntity {

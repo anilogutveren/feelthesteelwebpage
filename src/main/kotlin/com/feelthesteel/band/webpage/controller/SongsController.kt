@@ -1,6 +1,6 @@
 package com.feelthesteel.band.webpage.controller
 
-import com.feelthesteel.band.webpage.entity.songs.SongEntity
+import com.feelthesteel.band.webpage.entity.SongEntity
 import com.feelthesteel.band.webpage.service.ISongsService
 import lombok.RequiredArgsConstructor
 import org.slf4j.Logger
@@ -12,10 +12,12 @@ import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestHeader
+import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/songs")
 class SongsController(
     private val songsService: ISongsService
 ) {
@@ -30,7 +32,7 @@ class SongsController(
         return ResponseEntity.ok(songsService.saveSongs(songEntity))
     }
 
-    @GetMapping("/getCoveredSongs/{name}", produces = ["application/json"])
+    @GetMapping("/coveredSongs/{name}", produces = ["application/json"])
     fun getCoveredSongs(
         @RequestHeader("X-TrackingId", required = true) trackingId: String,
         @PathVariable(value = "isCovered", required = true) isCovered: Boolean
@@ -40,7 +42,7 @@ class SongsController(
     }
 
     @DeleteMapping("/deleteAllSongs")
-    fun deleteAllMusicians(
+    fun deleteAllSongs(
         @RequestHeader("X-TrackingId", required = true) trackingId: String
     ): ResponseEntity<Any> {
         return ResponseEntity.ok(songsService.deleteAllSongs())

@@ -1,7 +1,7 @@
 package com.feelthesteel.band.webpage.controller
 
-import com.feelthesteel.band.webpage.entity.Instrument
 import com.feelthesteel.band.webpage.entity.MusicianEntity
+import com.feelthesteel.band.webpage.model.Instrument
 import com.feelthesteel.band.webpage.service.IMusicianService
 import lombok.RequiredArgsConstructor
 import org.slf4j.Logger

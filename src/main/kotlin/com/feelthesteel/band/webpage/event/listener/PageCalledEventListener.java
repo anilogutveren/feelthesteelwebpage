@@ -10,6 +10,6 @@ public class PageCalledEventListener {
     @EventListener
     public void pageCalledEventHandler(PageCalledEvent pageCalledEvent) throws InterruptedException {
         Thread.sleep(1000L);
-        System.out.println("PageCalledEventListener-> " + " from IP Address " + pageCalledEvent.getSource().toString());
+        System.out.println("PageCalledEventListener-> from IP Address " + pageCalledEvent.getSource().toString());
     }
 }
