@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h2>Contacts</h2>
+    <h2>Gallery</h2>
     <hr>
     <button class="btn btn-dark" @click="navigateToHome">Back to HomePage</button>
     <hr>
@@ -8,8 +8,9 @@
 </template>
 
 <script>
+
 export default {
-  name: "ContactsPage",
+  name: "Gallery",
   methods:{
     navigateToHome() {
       this.$router.push({name: 'HomePage'});

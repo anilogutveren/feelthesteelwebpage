@@ -21,6 +21,9 @@ public class WebpageServiceImpl implements IWebpageService {
     @Value("classpath:/static/main.html")
     private Resource mainPage;
 
+    @Value("classpath:/user")
+    private Resource userPage;
+
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
@@ -52,5 +55,10 @@ public class WebpageServiceImpl implements IWebpageService {
 
         pageCalledRepository.save(pageCall);
         return mainPage;
+    }
+
+    @Override
+    public Resource getSecurePage() {
+        return userPage;
     }
 }
