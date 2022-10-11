@@ -30,3 +30,5 @@ songs:
         - "Enter Sandman"
         - "Mother"
         - "Seal the Deal"
+server:
+    port: 8085

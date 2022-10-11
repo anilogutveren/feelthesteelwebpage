@@ -22,7 +22,9 @@ class FtsWebAppUserDetailsImpl(
 
     @PostConstruct
     fun init() {
-        usersRepository.save(UserEntity(1, "admin", passwordEncoder.encode("12345"), "ADMIN"))
+        usersRepository.save(UserEntity(1, "admin", passwordEncoder.encode("admin123"), "ADMIN"))
+        usersRepository.save(UserEntity(2, "dominik", passwordEncoder.encode("dominik"), "USER"))
+        usersRepository.save(UserEntity(3, "axel", passwordEncoder.encode("axel"), "USER"))
     }
 
     override fun loadUserByUsername(username: String?): UserDetails {

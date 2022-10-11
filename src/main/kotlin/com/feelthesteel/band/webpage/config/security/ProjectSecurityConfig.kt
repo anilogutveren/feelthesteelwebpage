@@ -2,19 +2,25 @@ package com.feelthesteel.band.webpage.config.security
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import org.springframework.core.annotation.Order
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
+import org.springframework.security.config.oauth2.client.CommonOAuth2Provider
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.password.NoOpPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
+import org.springframework.security.oauth2.client.registration.ClientRegistration
+import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository
+import org.springframework.security.oauth2.client.registration.InMemoryClientRegistrationRepository
+import org.springframework.security.oauth2.core.AuthorizationGrantType
 import org.springframework.security.web.SecurityFilterChain
 
 /**
  * Burada Spring Security kullanildi.
  * UserDetailService hem InMemory hem de JDBC olarak implemente edildi.
+ * Noops Encryption is deprecated.
  * **/
 
-// @EnableWebSecurity
+@EnableWebSecurity(debug = true)
 @Configuration
 class ProjectSecurityConfig {
 
@@ -28,21 +34,24 @@ class ProjectSecurityConfig {
         return NoOpPasswordEncoder.getInstance()
     }
 
-    @Order(1)
     @Bean
-    fun filterChain(http: HttpSecurity): SecurityFilterChain {
-        http.headers().frameOptions().disable()
-        http.cors().and().csrf().disable().authorizeRequests()
-            .antMatchers("/musicians/**").authenticated()
-            .antMatchers("/songs/coveredSongs").authenticated()
-            .antMatchers("/songs/addNewSong").hasAuthority("ADMIN")
-            .antMatchers("/deleteAllSongs").hasRole("ADMIN")
-            .antMatchers("/deleteAllMusicians").hasRole("ADMIN")
-            .antMatchers("/registerMultipleMusicians").hasRole("ADMIN")
-            .anyRequest().permitAll()
-            .and()
-            .httpBasic()
+    fun defaultSecurityFilterChain(http: HttpSecurity): SecurityFilterChain {
+        http.authorizeHttpRequests().anyRequest().authenticated().and().oauth2Login()
         return http.build()
+    }
+
+    @Bean
+    fun clientRegistrationRepository(): ClientRegistrationRepository {
+        return InMemoryClientRegistrationRepository(clientGitHubRegistration())
+    }
+
+    private fun clientGitHubRegistration(): ClientRegistration {
+        return CommonOAuth2Provider.GITHUB.getBuilder("github")
+            .clientId("f71d3b77187a81a4c19b")
+            .clientSecret("98558fcef71d82599a4be38635f427e207498553")
+            .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
+            .redirectUri("{baseUrl}/{action}/oauth2/code/{registrationId}")
+            .build()
     }
 
     /*

@@ -2,7 +2,6 @@ package com.feelthesteel.band.webpage.service.impl.auth
 
 import com.feelthesteel.band.webpage.entity.UserEntity
 import com.feelthesteel.band.webpage.repository.UsersRepository
-import javax.annotation.PostConstruct
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.security.authentication.AuthenticationProvider
@@ -13,6 +12,7 @@ import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Component
+import javax.annotation.PostConstruct
 
 @Component
 class FtsWebAppUsernamePwdAuthProvider(

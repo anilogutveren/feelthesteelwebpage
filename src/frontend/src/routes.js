@@ -1,9 +1,10 @@
 import { createWebHistory, createRouter } from "vue-router";
-import HomePage from "./components/HomePage"
-import AboutPage from './components/AboutPage'
-import ContactPage from './components/ContactPage'
-import PhotosPage from './components/PhotosPage'
+import HomePage from "./pages/HomePage"
+import AboutPage from './components/About'
+import ContactPage from './components/Contact'
+import Gallery from './components/Gallery'
 import HeaderPage from './components/AppHeader'
+import LoginPage from './pages/LoginPage'
 
 export const routes = [
     {
@@ -27,10 +28,18 @@ export const routes = [
         }
     },
     {
-        path: "/photos",
-        name: "photos",
+        path: "/gallery",
+        name: "gallery",
         components: {
-            default: PhotosPage
+            default: Gallery
+        }
+    }
+    ,
+    {
+        path: "/login",
+        name: "LoginPage",
+        components: {
+            default: LoginPage
         }
     }
 ];

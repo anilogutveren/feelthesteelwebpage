@@ -4,6 +4,7 @@ import com.feelthesteel.band.webpage.service.impl.auth.FtsWebAppUserDetailsImpl
 import lombok.RequiredArgsConstructor
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import org.springframework.http.HttpHeaders
 import org.springframework.http.ResponseEntity
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.web.bind.annotation.GetMapping
@@ -18,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController
 class UsersController(
     private val ftsWebAppUserDetailsImpl: FtsWebAppUserDetailsImpl
 ) {
-
     private val logger: Logger = LoggerFactory.getLogger(this.javaClass)
 
     @GetMapping("/{name}", produces = ["application/json"])

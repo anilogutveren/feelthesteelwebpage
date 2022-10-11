@@ -11,5 +11,5 @@ abstract class Guitarist() : Musician {
 
     abstract fun plugInSpeakers()
 
-    fun live() { println("Guitarist can play live") }
+    fun playsLive() { println("Guitarist can play live") }
 }
