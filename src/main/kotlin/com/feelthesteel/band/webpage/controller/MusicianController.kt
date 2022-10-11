@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.http.ResponseEntity
+import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
@@ -40,6 +41,7 @@ class MusicianController(
     }
 
     @DeleteMapping("/deleteAllMusicians")
+    @PreAuthorize("hasRole('ADMIN')")
     fun deleteAllMusicians(
         @RequestHeader("X-TrackingId", required = true) trackingId: String
     ): ResponseEntity<Any> {

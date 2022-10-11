@@ -22,10 +22,10 @@ class FtsWebAppUsernamePwdAuthProvider(
     val passwordEncoder: BCryptPasswordEncoder
 ) : AuthenticationProvider {
 
-    @PostConstruct
+/*    @PostConstruct
     fun init() {
-        usersRepository.save(UserEntity(1, "admin", passwordEncoder.encode("12345"), "ADMIN"))
-    }
+        usersRepository.save(UserEntity(1, "admin", passwordEncoder.encode("12345"), "WRITE"))
+    }*/
 
     override fun authenticate(authentication: Authentication?): Authentication {
         val username = authentication?.name

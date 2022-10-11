@@ -13,7 +13,7 @@
     </div>
     <hr>
     <br>
-    <p>TEST: {{userData.username}}</p>
+    <p>TEST: {{loggedInUser.loggedUser}}</p>
     <button class="btn btn-dark" @click="navigateToHome">Back to HomePage</button>
     <hr>
   </div>
@@ -21,6 +21,7 @@
 
 <script>
 import {mapActions} from "vuex"
+import axios from "axios";
 export default {
   name: "LoginPage",
   data(){
@@ -28,9 +29,19 @@ export default {
       userData : {
         username : 'Anil',
         password : '',
-
+      },
+      loggedInUser : {
+        loggedUser: '',
       }
     }
+  },
+  created(){
+  axios.get("http://localhost:8085/user/admin")
+      .then(response => {
+        this.loggedUser = response.data
+        console.log(response.data)
+      })
+      .catch(e => console.log(e))
   },
   methods: {
     setUsername(){

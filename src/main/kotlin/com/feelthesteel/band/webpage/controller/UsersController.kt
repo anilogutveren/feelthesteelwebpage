@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/users")
-
+@CrossOrigin(origins = ["http://localhost:8082"])
 class UsersController(
     private val ftsWebAppUserDetailsImpl: FtsWebAppUserDetailsImpl
 ) {
