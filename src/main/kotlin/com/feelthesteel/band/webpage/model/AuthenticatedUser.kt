@@ -15,7 +15,7 @@ class AuthenticatedUser : UserDetails {
 
     override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
         val authorities: MutableList<GrantedAuthority> = ArrayList()
-        authorities.add(SimpleGrantedAuthority(userEntity.role))
+        authorities.add(SimpleGrantedAuthority(userEntity.role.toString()))
         return authorities
     }
 

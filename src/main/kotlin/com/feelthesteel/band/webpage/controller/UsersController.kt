@@ -1,14 +1,16 @@
 package com.feelthesteel.band.webpage.controller
 
+import com.feelthesteel.band.webpage.entity.UserEntity
 import com.feelthesteel.band.webpage.service.impl.auth.FtsWebAppUserDetailsImpl
 import lombok.RequiredArgsConstructor
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.http.ResponseEntity
 import org.springframework.security.core.userdetails.UserDetails
-import org.springframework.web.bind.annotation.CrossOrigin
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestHeader
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
@@ -16,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/users")
-
 class UsersController(
     private val ftsWebAppUserDetailsImpl: FtsWebAppUserDetailsImpl
 ) {
@@ -29,5 +30,14 @@ class UsersController(
     ): ResponseEntity<UserDetails> {
         logger.info("Searching for user $name")
         return ResponseEntity.ok(ftsWebAppUserDetailsImpl.loadUserByUsername(name))
+    }
+
+    @PostMapping("/addNewUser")
+    fun addUser(
+        @RequestHeader("X-TrackingId", required = true) trackingId: String,
+        @RequestBody userEntity: UserEntity
+    ): ResponseEntity<Unit> {
+        logger.info("Adding new user")
+        return ResponseEntity.ok(ftsWebAppUserDetailsImpl.addNewUser(userEntity))
     }
 }
