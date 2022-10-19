@@ -12,7 +12,6 @@
 </template>
 
 <script>
-import axios from "axios";
 
 export default {
   name: "HomePage",
@@ -20,14 +19,6 @@ export default {
     return {
       admin : ""
     }
-  },
-  created(){
-    axios.get("http://localhost:8085/login")
-        .then(response => {
-          this.admin = response.data
-          console.log(response.data)
-        })
-        .catch(e => console.log(e))
   }
 }
 </script>

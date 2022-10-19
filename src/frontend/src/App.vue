@@ -13,16 +13,10 @@
 
 <script>
 import AppHeader from "./components/AppHeader";
-import {mapGetters} from "vuex";
 
 export default {
   components : {
-    appHeader : AppHeader,
-  },
-  computed: {
-    ...mapGetters ({
-      usersName: "getUsername"
-    })
+    appHeader : AppHeader
   }
 }
 </script>

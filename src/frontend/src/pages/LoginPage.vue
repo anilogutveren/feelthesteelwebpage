@@ -1,52 +1,61 @@
 <template>
   <div class="container">
-    <h2>Login</h2>
     <hr>
-    <div class="form-group">
-      <form>
-        <label for="username" style="color:White;"> Username or Email: </label>
-        <input type="text" id="username" name="username" v-model="userData.username" @input="setUsername"><br><br>
-        <label for="password" style="color:White;">Password: </label>
-        <input type="password" id="password" name="password"><br><br>
-        <input type="submit" value="Submit">
-      </form>
-    </div>
-    <hr>
-    <br>
-    <p>TEST: {{userData.username}}</p>
     <button class="btn btn-dark" @click="navigateToHome">Back to HomePage</button>
     <hr>
+    <div class="row  mt-5">
+      <div class="col-md-4 offset-4 card card-primary p-3 border"
+           :class="{'border-primary' : isUser, 'border-success' : !isUser }">
+        <h3
+            :class="{'text-primary' : isUser, 'text-success' : !isUser }"
+            class="text-center mb-3 mt-3">Authentication</h3>
+        <hr>
+        <form @submit.prevent="onSubmit">
+          <div class="form-group">
+            <label>Your Email</label>
+            <input v-model="user.email" type="email" class="form-control"
+                   placeholder="Enter your email">
+          </div>
+          <div class="form-group">
+            <label>Şifre</label>
+            <input v-model="user.password" type="password" class="form-control" placeholder="Password...">
+          </div>
+          <div class="button-container d-flex  flex-column align-items-center">
+            <button type="submit" :class="{'btn-primary' : isUser, 'btn-success' : !isUser }"
+                    class="btn btn-block mb-2">
+              {{ isUser ? 'Login' : 'Register' }}
+            </button>
+            <a href="#" @click.prevent="isUser=!isUser" class="text-secondary">
+              {{ isUser ? 'I dont have any account' : 'I have an account'}}
+            </a>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
 </template>
-
 <script>
-import {mapActions} from "vuex"
-export default {
-  name: "LoginPage",
-  data(){
-    return {
-      userData : {
-        username : 'Anil',
-        password : '',
 
-      }
+export default {
+  data() {
+    return {
+      user: {
+        email: null,
+        password: null
+      },
+      isUser: false
     }
   },
   methods: {
-    setUsername(){
-      this.setValue(this.userData.username)
+    onSubmit() {
+      this.$store.dispatch("login", { ...this.user, isUser : this.isUser  })
+          .then(response => {
+            this.$router.push("/")
+          })
     },
     navigateToHome() {
       this.$router.push({name: 'HomePage'});
-    },
-    ...mapActions({
-      setValue: "setValue"
-    })
+    }
   }
 }
-
 </script>
-
-<style scoped>
-p{color: #cccccc}
-</style>
