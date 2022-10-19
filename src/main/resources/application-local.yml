@@ -1,11 +1,13 @@
 server:
     port: 8085
 spring:
+    main:
+        allow-circular-references: true
     security:
         enabled: false
         user:
-            name: admin
-            password: adminPassword
+            name: anil
+            password: 123
     jpa:
         hibernate:
             ddl-auto: update
