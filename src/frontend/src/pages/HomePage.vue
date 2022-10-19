@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h3>Home</h3>
+    <h2>Homepage</h2>
     <img alt="Fts logo" src="../assets/fts.jpg">
     <hr>
     <p>{{admin}}</p>

@@ -6,11 +6,18 @@ import { router } from "../routes"
 export const store = createStore({
     state: {
         token : "",
-        fbAPIKey : ""
+        fbAPIKey : "",
+        user: ""
     },
     getters: {
         isAuthenticated(state){
             return state.token !== ""
+        },
+        testToken(state){
+            return state.token
+        },
+        getUser(state){
+            return state.user
         }
     },
     mutations: {
@@ -19,18 +26,24 @@ export const store = createStore({
         },
         clearToken(state){
             state.token = ""
+        },
+        setUser(state, user){
+            state.user = user
+            console.log(state.user)
+        },
+        clearUser(state, user){
+            state.user = ""
         }
     },
     actions : {
-        initAuth({ commit, dispatch}){
+        initAuth({ commit, dispatch }){
             let token = localStorage.getItem("token")
             if(token){
-
                 let expirationDate = localStorage.getItem("expirationDate")
                 let time = new Date().getTime()
 
                 if(time >= +expirationDate){
-                    console.log("token süresi geçmiş...")
+                    console.log("Token expired...")
                     dispatch("logout")
                 } else {
                     commit("setToken", token)
@@ -41,42 +54,36 @@ export const store = createStore({
                 }
 
             } else {
-                router.push("/auth")
+                router.push("/login")
                 return false
             }
         },
-        login({ commit, dispatch, state}, authData){
-            let authLink = "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key="
-            if(authData.isUser){
-                authLink = "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key="
-            }
+        login({ commit, dispatch, state }, authData){
+            let authLink = "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key="
+            commit("setUser", authData.email)
             return axios.post(
                 authLink + "AIzaSyBGXHU4cvqCy4Qtuml2ItuvPsU7OelQ3eo",
                 { email :authData.email, password : authData.password, returnSecureToken : true}
             ).then(response => {
-                // console.log(response.data)
+                console.log(response.data)
                 commit("setToken", response.data.idToken)
                 localStorage.setItem("token", response.data.idToken)
-
-                localStorage.setItem("expirationDate", new Date().getTime() + +response.data.expiresIn * 1000)
-                // localStorage.setItem("expirationDate", new Date().getTime() + 10000)
-
+                localStorage.setItem("expirationDate", new Date().getTime() + + response.data.expiresIn * 1000)
                 dispatch("setTimeoutTimer", +response.data.expiresIn * 1000)
-                // dispatch("setTimeoutTimer", 10000)
             })
         },
-        logout({ commit}){
+        logout({ commit }){
             commit("clearToken")
+            commit("clearUser")
             localStorage.removeItem("token")
             localStorage.removeItem("expirationDate")
-            router.replace("/auth")
+            router.push("/login")
         },
         setTimeoutTimer({dispatch}, expiresIn){
             setTimeout(() => {
                 dispatch("logout")
             }, expiresIn)
         }
-
     }
   }
 )

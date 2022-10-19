@@ -2,9 +2,11 @@ import * as Vue from 'vue';
 import App from './App.vue'
 import router from './routes'
 import { store } from "./store/store"
-
 /*import axios from "axios"
 
+axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*'*/
+
+/*import axios from "axios"
 axios.defaults.baseURL = "localhost:8085"
 axios.defaults.headers.get["X-TrackingId"] = "1245"
 axios.defaults.headers.get["Accepts"] = "application/json"

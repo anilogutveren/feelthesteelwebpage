@@ -1,14 +1,13 @@
 <template>
   <div class="container">
+    <h2>Login Page</h2>
     <hr>
     <button class="btn btn-dark" @click="navigateToHome">Back to HomePage</button>
     <hr>
     <div class="row  mt-5">
-      <div class="col-md-4 offset-4 card card-primary p-3 border"
-           :class="{'border-primary' : isUser, 'border-success' : !isUser }">
-        <h3
-            :class="{'text-primary' : isUser, 'text-success' : !isUser }"
-            class="text-center mb-3 mt-3">Authentication</h3>
+      <div class="col-md-4 offset-4 card card-primary p-3 border">
+        <h3 class="text-center mb-3 mt-3">Authentication</h3>
+        <p v-if="isUser">!!Wrong Credentials!!</p>
         <hr>
         <form @submit.prevent="onSubmit">
           <div class="form-group">
@@ -17,17 +16,11 @@
                    placeholder="Enter your email">
           </div>
           <div class="form-group">
-            <label>Şifre</label>
+            <label>Password</label>
             <input v-model="user.password" type="password" class="form-control" placeholder="Password...">
           </div>
           <div class="button-container d-flex  flex-column align-items-center">
-            <button type="submit" :class="{'btn-primary' : isUser, 'btn-success' : !isUser }"
-                    class="btn btn-block mb-2">
-              {{ isUser ? 'Login' : 'Register' }}
-            </button>
-            <a href="#" @click.prevent="isUser=!isUser" class="text-secondary">
-              {{ isUser ? 'I dont have any account' : 'I have an account'}}
-            </a>
+            <button type="submit">Login</button>
           </div>
         </form>
       </div>
@@ -35,7 +28,7 @@
   </div>
 </template>
 <script>
-
+import {mapGetters, mapActions} from "vuex";
 export default {
   data() {
     return {
@@ -46,11 +39,30 @@ export default {
       isUser: false
     }
   },
+  computed : {
+    ...mapGetters({
+      isAuthenticated: 'isAuthenticated',
+      testToken: 'testToken'
+    }),
+    ...mapActions([
+      "initAuth",
+      "login",
+      "logout"
+    ])
+  },
   methods: {
     onSubmit() {
-      this.$store.dispatch("login", { ...this.user, isUser : this.isUser  })
+      this.$store.dispatch("login", {...this.user})
           .then(response => {
-            this.$router.push("/")
+            if( this.isAuthenticated === true) {
+              console.log(this.isAuthenticated)
+              console.log(this.$store.getters.testToken)
+              this.$router.push("/")
+              this.isUser = true
+            } else{
+                  this.$router.push("/login")
+                  this.isUser = false
+                  }
           })
     },
     navigateToHome() {
@@ -59,3 +71,7 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+h3{color: Black;}
+</style>

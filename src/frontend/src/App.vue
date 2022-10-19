@@ -4,7 +4,7 @@
       <div class="col-md-12">
         <br>
         <app-header></app-header>
-        <h6 style="float:right"> Welcome {{ usersName }} </h6>
+        <h6 style="float:right"> Welcome {{ saluteUser }} </h6>
         <router-view></router-view>
       </div>
     </div>
@@ -13,10 +13,16 @@
 
 <script>
 import AppHeader from "./components/AppHeader";
+import {mapGetters} from "vuex";
 
 export default {
   components : {
-    appHeader : AppHeader
+    appHeader: AppHeader
+  },
+  computed: {
+    saluteUser() {
+      return this.$store.getters.getUser
+    }
   }
 }
 </script>
