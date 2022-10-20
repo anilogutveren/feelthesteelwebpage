@@ -6,7 +6,7 @@ import Gallery from './components/Gallery'
 import HeaderPage from './components/AppHeader'
 import LoginPage from './pages/LoginPage'
 
-export const routes = [
+const routes = [
     {
         path: '/',
         name: 'HomePage',
@@ -46,7 +46,7 @@ export const routes = [
 
 const router = createRouter({
     history: createWebHistory(),
-    routes,
+    routes
 });
 
 export default router;
