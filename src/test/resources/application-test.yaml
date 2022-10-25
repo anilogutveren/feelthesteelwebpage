@@ -1,0 +1,10 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database: h2
+  flyway:
+      enabled: false
+  security: false
+  jwt:
+    security: false

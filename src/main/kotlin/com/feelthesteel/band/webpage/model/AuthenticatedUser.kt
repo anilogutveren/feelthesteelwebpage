@@ -1,30 +1,30 @@
 package com.feelthesteel.band.webpage.model
 
-import com.feelthesteel.band.webpage.entity.UserEntity
+import com.feelthesteel.band.webpage.entity.WebUsers
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
 
 class AuthenticatedUser : UserDetails {
 
-    private var userEntity: UserEntity
+    private var webUsers: WebUsers
 
-    constructor(userEntity: UserEntity) {
-        this.userEntity = userEntity
+    constructor(webUsers: WebUsers) {
+        this.webUsers = webUsers
     }
 
     override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
         val authorities: MutableList<GrantedAuthority> = ArrayList()
-        authorities.add(SimpleGrantedAuthority(userEntity.role.toString()))
+        authorities.add(SimpleGrantedAuthority(webUsers.role.toString()))
         return authorities
     }
 
     override fun getPassword(): String {
-        return userEntity.password
+        return webUsers.password
     }
 
     override fun getUsername(): String {
-        return userEntity.username
+        return webUsers.username
     }
 
     override fun isAccountNonExpired(): Boolean {

@@ -42,7 +42,7 @@ class ProjectSecurityConfig() {
 
     @Autowired
     fun configurePasswordEncoder(builder: AuthenticationManagerBuilder) {
-        builder.userDetailsService(userAuthDetailsService).passwordEncoder(getBCryptPasswordEncoder())
+        builder.userDetailsService(userAuthDetailsService).passwordEncoder(BCryptPasswordEncoder(16))
     }
 
     @Bean
@@ -52,7 +52,14 @@ class ProjectSecurityConfig() {
 
         http.csrf().disable()
             .authorizeRequests().antMatchers("/login").permitAll()
-            .anyRequest().authenticated().and()
+            .antMatchers("/").permitAll()
+            .antMatchers("/photo.jpg").permitAll()
+            .antMatchers("/users/**").authenticated()
+            .antMatchers("/addNewSong").authenticated()
+            .antMatchers("/deleteAllSongs").authenticated()
+            .antMatchers("/registerNewMusician").authenticated()
+            .antMatchers("/registerMultipleMusicians").authenticated()
+            .antMatchers("/deleteAllMusicians").authenticated().and()
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 
         http.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter::class.java)
@@ -66,7 +73,7 @@ class ProjectSecurityConfig() {
         return authenticationConfiguration.authenticationManager
     }
 
-    @Bean("bcrypt")
+/*    @Bean("bcrypt")
     fun getBCryptPasswordEncoder(): BCryptPasswordEncoder {
         return BCryptPasswordEncoder(16)
     }
@@ -74,5 +81,5 @@ class ProjectSecurityConfig() {
     @Bean("noops")
     fun getNoOpPasswordEncoder(): PasswordEncoder {
         return NoOpPasswordEncoder.getInstance()
-    }
+    }*/
 }

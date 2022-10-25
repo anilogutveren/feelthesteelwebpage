@@ -1,7 +1,7 @@
 package com.feelthesteel.band.webpage.controller
 
-import com.feelthesteel.band.webpage.entity.UserEntity
-import com.feelthesteel.band.webpage.service.impl.auth.FtsWebAppUserDetailsImpl
+import com.feelthesteel.band.webpage.config.security.auth.UserAuthDetailsService
+import com.feelthesteel.band.webpage.entity.WebUsers
 import lombok.RequiredArgsConstructor
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController
 @RequiredArgsConstructor
 @RequestMapping("/users")
 class UsersController(
-    private val ftsWebAppUserDetailsImpl: FtsWebAppUserDetailsImpl
+    private val ftsWebAppUserDetailsImpl: UserAuthDetailsService
 ) {
     private val logger: Logger = LoggerFactory.getLogger(this.javaClass)
 
@@ -35,9 +35,9 @@ class UsersController(
     @PostMapping("/addNewUser")
     fun addUser(
         @RequestHeader("X-TrackingId", required = true) trackingId: String,
-        @RequestBody userEntity: UserEntity
+        @RequestBody webUsers: WebUsers
     ): ResponseEntity<Unit> {
         logger.info("Adding new user")
-        return ResponseEntity.ok(ftsWebAppUserDetailsImpl.addNewUser(userEntity))
+        return ResponseEntity.ok(ftsWebAppUserDetailsImpl.addNewUser(webUsers))
     }
 }

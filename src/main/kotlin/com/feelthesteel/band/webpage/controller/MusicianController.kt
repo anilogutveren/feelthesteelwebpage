@@ -1,7 +1,7 @@
 package com.feelthesteel.band.webpage.controller
 
+import com.feelthesteel.band.webpage.dto.MusicianDto
 import com.feelthesteel.band.webpage.entity.MusicianEntity
-import com.feelthesteel.band.webpage.model.Instrument
 import com.feelthesteel.band.webpage.service.IMusicianService
 import lombok.RequiredArgsConstructor
 import org.slf4j.Logger
@@ -29,14 +29,13 @@ class MusicianController(
         return ResponseEntity.ok(musicianService.getAllMusicians())
     }
 
-    @GetMapping("/musicians/{name}/{instrument}")
-    fun getMusicianByNameAndInstrument(
+    @GetMapping("/musicians/{name}")
+    fun getMusicianByName(
         @RequestHeader("X-TrackingId", required = true) trackingId: String,
-        @PathVariable(value = "name", required = false) name: String,
-        @PathVariable(value = "instrument", required = false) instrument: Instrument
-    ): ResponseEntity<MusicianEntity> {
-        logger.info("$name $instrument")
-        return ResponseEntity.ok(musicianService.findMusicianByNameAndInstrument(name, instrument))
+        @PathVariable(value = "name", required = false) name: String
+    ): ResponseEntity<MusicianDto> {
+        logger.info("Searching musician with name $name")
+        return ResponseEntity.ok(musicianService.findMusicianByName(name))
     }
 
     @DeleteMapping("/deleteAllMusicians")

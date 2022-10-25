@@ -1,5 +1,6 @@
 package com.feelthesteel.band.webpage.config.security.auth
 
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource
@@ -8,7 +9,6 @@ import org.springframework.web.filter.OncePerRequestFilter
 import javax.servlet.FilterChain
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
-import org.springframework.beans.factory.annotation.Autowired
 
 @Component
 class JwtTokenFilter(
@@ -17,9 +17,6 @@ class JwtTokenFilter(
 ) : OncePerRequestFilter() {
 
     override fun doFilterInternal(httpServletRequest: HttpServletRequest, httpServletResponse: HttpServletResponse, filterChain: FilterChain) {
-        /**
-         * "Bearer 123hab2355"
-         */
         val authHeader: String = httpServletRequest.getHeader("Authorization")
 
         var username: String? = null

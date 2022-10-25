@@ -10,7 +10,7 @@ import javax.persistence.Table
 
 @Entity
 @Table(name = "webusers")
-data class Users(
+data class WebUsers(
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     var id: Long,
@@ -22,5 +22,5 @@ data class Users(
     var password: String,
 
     @Embedded
-    var role: RolesEntity
+    var role: Roles
 )

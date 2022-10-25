@@ -1,21 +1,26 @@
 server:
     port: 8085
 spring:
+    flyway:
+        url: jdbc:postgresql://localhost:5432/postgres
+        user: musiciansname
+        password: anilstraining_2022
     main:
         allow-circular-references: true
-    security:
         enabled: false
+    security:
         user:
             name: anil
             password: 123
-    jpa:
-        hibernate:
-            ddl-auto: validate
         database: postgresql
     datasource:
         url: jdbc:postgresql://localhost:5432/postgres
         username: musiciansname
         password: anilstraining_2022
+        driver-class-name: org.postgresql.Driver
+    jpa:
+        hibernate:
+            ddl-auto: create
     session:
         jdbc:
             initialize-schema: always
