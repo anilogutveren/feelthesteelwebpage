@@ -2,8 +2,15 @@ server:
     port: 8085
 spring:
     flyway:
+        url: jdbc:postgresql://localhost:5432/postgres
         user: musiciansname
         password: anilstraining_2022
+    jpa:
+        hibernate:
+            ddl-auto: none
+        database: postgresql
+    main:
+        allow-circular-references: true
     security:
         user:
             name: anil
@@ -14,9 +21,6 @@ spring:
         username: musiciansname
         password: anilstraining_2022
         driver-class-name: org.postgresql.Driver
-    jpa:
-        hibernate:
-            ddl-auto: none
     session:
         jdbc:
             initialize-schema: always
@@ -37,4 +41,4 @@ songs:
         - "Seal the Deal"
 jwt:
     key: ""
-    header: "Auhtorization"
+    header: "Authorization"

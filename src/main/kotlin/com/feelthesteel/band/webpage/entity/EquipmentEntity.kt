@@ -24,5 +24,5 @@ data class EquipmentEntity(
 
     @ManyToOne
     @JoinColumn(name = "musician_id")
-    val musicianEntity: MusicianEntity
+    val musicianEntity: MusicianEntity?
 )
