@@ -11,6 +11,11 @@ class Drummer(var fullname: String) : Musician {
         println(fullname)
     }
 
+    companion object {
+        fun learnNewSong() = println("Learning new song")
+    }
+
+
     override val name: String
         get() = this.fullname
 

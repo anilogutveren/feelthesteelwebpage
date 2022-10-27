@@ -8,10 +8,7 @@ import lombok.Data
 import lombok.EqualsAndHashCode
 import lombok.NoArgsConstructor
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
+
 @EqualsAndHashCode(of = ["id"])
 data class MusicianDto(
 
@@ -20,5 +17,5 @@ data class MusicianDto(
     @NotNull
     val name: String,
 
-    val equipments: Set<EquipmentEntity>
+    val equipments: Set<EquipmentEntity>?
 )

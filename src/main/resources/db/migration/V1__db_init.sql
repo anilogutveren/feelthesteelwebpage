@@ -11,9 +11,9 @@ CREATE TABLE equipment
 (
     id bigint NOT NULL,
     instrument VARCHAR,
-    musician_entity_id bigint NOT NULL,
+    musician_id bigint not null,
     PRIMARY KEY (ID),
-    CONSTRAINT fk_musicians_entity_data FOREIGN KEY (musician_entity_id) references musicians(id)
+    CONSTRAINT fk_musicians_entity_data FOREIGN KEY (musician_id) references musicians(id)
 );
 
 CREATE TABLE webusers
