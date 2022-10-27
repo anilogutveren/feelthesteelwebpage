@@ -1,0 +1,1 @@
+insert into musicians(id, name) values(1, 'Anil');

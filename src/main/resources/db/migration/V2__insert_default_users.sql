@@ -1,0 +1,1 @@
+insert into webusers(id, password, role, username) values(1, '12345', 'ADMIN', 'anil');

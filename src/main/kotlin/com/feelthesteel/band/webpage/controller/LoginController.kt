@@ -16,8 +16,7 @@ import org.springframework.web.bind.annotation.RestController
 @RequiredArgsConstructor
 @RequestMapping("/login")
 class LoginController(
-    private val tokenManager: TokenManager,
-
+    private val tokenManager: TokenManager
 ) {
     @Autowired
     private lateinit var authenticationManager: AuthenticationManager

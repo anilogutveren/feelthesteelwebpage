@@ -11,7 +11,7 @@ import lombok.Setter
 @Getter
 @Setter
 @NoArgsConstructor
-class RolesEntity {
+class Roles {
     private val role: String = ""
 }
 

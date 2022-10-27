@@ -1,4 +1,7 @@
 package com.feelthesteel.band.webpage.model
+
+import javax.persistence.Embeddable
+
 /*
  * Enum is used
  */

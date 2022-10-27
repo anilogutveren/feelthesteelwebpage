@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
 import javax.persistence.Table
+import lombok.Builder
 
 @Entity
 @Table(name = "songsTable")
@@ -13,13 +14,10 @@ data class SongEntity(
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var id: Long,
+    var id: Long?,
 
     @Column(name = "songName")
     var songName: String,
-
-    @Column(name = "songNumber")
-    var songNumber: Long,
 
     @Column(name = "songGenre")
     var songsGenre: String,
