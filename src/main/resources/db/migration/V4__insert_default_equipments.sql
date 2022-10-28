@@ -1,1 +1,0 @@
-insert into equipment (id, instrument, musician_entity_id) values (1,'Drum', 1);

@@ -16,8 +16,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.config.http.SessionCreationPolicy
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
-import org.springframework.security.crypto.password.NoOpPasswordEncoder
-import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.security.web.SecurityFilterChain
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
 
@@ -50,17 +48,19 @@ class ProjectSecurityConfig() {
         // Disable Frame Options for Vue Js frontend
         http.headers().frameOptions().disable()
 
-        http.csrf().disable()
-            .authorizeRequests().antMatchers("/login").permitAll()
+        http.cors().disable().csrf().disable()
+            .authorizeRequests()
+            .antMatchers("/login").permitAll()
             .antMatchers("/").permitAll()
+            .antMatchers("/h2-console").permitAll()
             .antMatchers("/photo.jpg").permitAll()
             .antMatchers("/users/**").authenticated()
             .antMatchers("/addNewSong").authenticated()
             .antMatchers("/deleteAllSongs").authenticated()
             .antMatchers("/registerNewMusician").authenticated()
             .antMatchers("/registerMultipleMusicians").authenticated()
-            .antMatchers("/deleteAllMusicians").authenticated().and()
-            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+            .antMatchers("/deleteAllMusicians").authenticated()
+            .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 
         http.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter::class.java)
 
@@ -73,13 +73,13 @@ class ProjectSecurityConfig() {
         return authenticationConfiguration.authenticationManager
     }
 
-/*    @Bean("bcrypt")
-    fun getBCryptPasswordEncoder(): BCryptPasswordEncoder {
-        return BCryptPasswordEncoder(16)
-    }
+    /*    @Bean("bcrypt")
+        fun getBCryptPasswordEncoder(): BCryptPasswordEncoder {
+            return BCryptPasswordEncoder(16)
+        }
 
-    @Bean("noops")
-    fun getNoOpPasswordEncoder(): PasswordEncoder {
-        return NoOpPasswordEncoder.getInstance()
-    }*/
+        @Bean("noops")
+        fun getNoOpPasswordEncoder(): PasswordEncoder {
+            return NoOpPasswordEncoder.getInstance()
+        }*/
 }
