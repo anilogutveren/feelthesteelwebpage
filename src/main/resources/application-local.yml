@@ -7,7 +7,7 @@ spring:
         password: anilstraining_2022
     jpa:
         hibernate:
-            ddl-auto: none
+            ddl-auto: create
         database: postgresql
     main:
         allow-circular-references: true

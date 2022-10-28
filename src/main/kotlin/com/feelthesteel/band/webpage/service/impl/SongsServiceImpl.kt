@@ -9,7 +9,6 @@ import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
-import org.springframework.util.Assert
 
 @Service
 class SongsServiceImpl(val songsRepository: SongsRepository) : ISongsService {
@@ -18,8 +17,6 @@ class SongsServiceImpl(val songsRepository: SongsRepository) : ISongsService {
 
     @Transactional
     override fun saveSongs(songDto: SongDto): SongDto {
-        Assert.notNull(songDto.id, "song id cannot be null!")
-
         logger.info("Song $songDto will be saved")
         val songEntity = songsRepository.save(songDto.toSongEntity())
 
@@ -45,7 +42,7 @@ class SongsServiceImpl(val songsRepository: SongsRepository) : ISongsService {
     fun SongDto.toSongEntity() = SongEntity(
         id = this.id,
         songName = this.songName,
-        songsGenre= this.songsGenre,
+        songsGenre = this.songsGenre,
         songsYear = this.songsYear,
         isCovered = this.isCovered
     )

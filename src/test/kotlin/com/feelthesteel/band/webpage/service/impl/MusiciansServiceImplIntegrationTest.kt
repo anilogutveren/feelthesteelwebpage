@@ -18,7 +18,7 @@ internal class MusiciansServiceImplIntegrationTest {
     private lateinit var repository: MusicianRepository
 
     @Autowired
-    private lateinit var service: IMusicianService
+    private lateinit var service: MusiciansServiceImpl
 
     @BeforeEach
     fun init() {

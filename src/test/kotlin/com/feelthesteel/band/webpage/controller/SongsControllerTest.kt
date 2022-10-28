@@ -31,6 +31,9 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers
 @ActiveProfiles("test")
 internal class SongsControllerTest() {
 
+    private val CONTENT_TYPE = "application/json"
+    private val TRACKING_ID = "abcde"
+
     @Autowired
     private lateinit var mockMvc: MockMvc
 
@@ -46,8 +49,8 @@ internal class SongsControllerTest() {
 
         val actions = mockMvc.perform(
             MockMvcRequestBuilders.post("/songs/addNewSong")
-                .header("X-TrackingId", "abcde")
-                .contentType("application/json")
+                .header("X-TrackingId", TRACKING_ID)
+                .contentType(CONTENT_TYPE)
                 .content(objectMapper.writeValueAsString(songDto))
         )
 
@@ -55,20 +58,6 @@ internal class SongsControllerTest() {
         verify(songsServiceImpl, Mockito.times(1)).saveSongs(captor.capture())
         assertThat(captor.allValues.any { it.songName == "testSong" })
         actions.andExpect(MockMvcResultMatchers.status().isOk)
-    }
-
-    @Test
-    fun addNewSong_InvalidInput() {
-        val songDto = SongDto(null, "", "testGenre", 1987, true)
-
-        val actions = mockMvc.perform(
-            MockMvcRequestBuilders.post("/songs/addNewSong")
-                .header("X-TrackingId", "abcde")
-                .contentType("application/json")
-                .content(objectMapper.writeValueAsString(songDto))
-        )
-
-        actions.andExpect(MockMvcResultMatchers.status().isBadRequest)
     }
 
     @Test
