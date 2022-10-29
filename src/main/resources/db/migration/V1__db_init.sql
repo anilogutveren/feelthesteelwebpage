@@ -23,3 +23,11 @@ CREATE TABLE webusers
     password VARCHAR,
     role VARCHAR
 );
+
+CREATE TABLE songs(
+    id bigint NOT NULL,
+    songName VARCHAR,
+    songGenre VARCHAR,
+    songYear VARCHAR,
+    isCovered BOOLEAN
+);

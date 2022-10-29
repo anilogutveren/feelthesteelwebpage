@@ -6,10 +6,9 @@ import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
 import javax.persistence.Table
-import lombok.Builder
 
 @Entity
-@Table(name = "songsTable")
+@Table(name = "songs")
 data class SongEntity(
 
     @Id
