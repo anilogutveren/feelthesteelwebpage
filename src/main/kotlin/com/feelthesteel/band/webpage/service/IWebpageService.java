@@ -5,5 +5,5 @@ import org.springframework.core.io.Resource;
 
 public interface IWebpageService {
     Resource getPage(HttpServletRequest request);
-    Resource getSecurePage();
+    Resource getUserPage();
 }

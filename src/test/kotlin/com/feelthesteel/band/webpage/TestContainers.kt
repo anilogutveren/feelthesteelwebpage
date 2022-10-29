@@ -17,7 +17,7 @@ import org.testcontainers.utility.DockerImageName
     webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT
 )
 @Testcontainers
-@ActiveProfiles("test")
+@ActiveProfiles("test-containers")
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 class TestContainers() {
     private val log = LoggerFactory.getLogger(this.javaClass)

@@ -17,5 +17,5 @@ class Singer(var fullname: String) : Musician {
         }
 
     @Override
-    override fun playInstrument() = println("Our singer $fullname sings with  " + Instrument.MICROPHONE + " microphone")
+    override fun playInstrument() = println("Our singer $fullname sings with  " + Instrument.Microphone("Sennheiser") + " microphone")
 }

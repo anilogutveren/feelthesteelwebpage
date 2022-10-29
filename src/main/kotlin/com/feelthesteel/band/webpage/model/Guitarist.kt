@@ -7,7 +7,7 @@ package com.feelthesteel.band.webpage.model
 abstract class Guitarist() : Musician {
 
     @Override
-    override fun playInstrument() = println("Guitarists play " + Instrument.GUITAR + " guitar")
+    override fun playInstrument() = println("Function Body for abstract method")
 
     abstract fun plugInSpeakers()
 
