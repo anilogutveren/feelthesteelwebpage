@@ -20,7 +20,7 @@ data class EquipmentEntity(
     var id: Long,
 
     @Enumerated(EnumType.STRING)
-    val instrument: Instrument.None,
+    val instrument: Instrument,
 
     @ManyToOne
     @JoinColumn(name = "musician_id")

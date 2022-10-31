@@ -7,21 +7,20 @@ package com.feelthesteel.band.webpage.model
 class Drummer(var fullname: String) : Musician {
 
     init {
-        fullname = "Anil"
+        fullname = "Anil Oeguetveren"
         println(fullname)
     }
 
     companion object {
-        var birthDay: String? = ""
-        fun play() = println("Playing drums")
         fun learnNewSong() = println("Learning new song")
     }
+
 
     override val name: String
         get() = this.fullname
 
     @Override
-    override fun playInstrument() = println("Drummer " + name + " plays " + Instrument.Drums("Acoustic", "Yamaha") + " drums")
+    override fun playInstrument() = println("Drummer " + name + " plays " + Instrument.DRUM + " drums")
 }
 
 /*// For Test Purposes

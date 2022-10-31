@@ -4,21 +4,14 @@ import com.feelthesteel.band.webpage.entity.EquipmentEntity
 import com.feelthesteel.band.webpage.entity.MusicianEntity
 import com.feelthesteel.band.webpage.model.Instrument
 import com.feelthesteel.band.webpage.repository.MusicianRepository
+import com.feelthesteel.band.webpage.service.IMusicianService
 import org.junit.Assert
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.test.context.ActiveProfiles
-import org.testcontainers.junit.jupiter.Testcontainers
 
-@SpringBootTest(
-    webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT
-)
-@Testcontainers
-@ActiveProfiles("test")
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+@SpringBootTest
 internal class MusiciansServiceImplIntegrationTest {
 
     @Autowired
@@ -34,7 +27,7 @@ internal class MusiciansServiceImplIntegrationTest {
 
     @Test
     fun `test save a musician`() {
-        val newEquipmentEntity = EquipmentEntity(1L, Instrument.None, null)
+        val newEquipmentEntity = EquipmentEntity(1L, Instrument.DRUM, null)
 
         val newMusicianEntity = MusicianEntity(1L, "testMusicianName", setOf(newEquipmentEntity))
 

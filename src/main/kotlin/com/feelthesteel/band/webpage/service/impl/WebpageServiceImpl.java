@@ -58,7 +58,7 @@ public class WebpageServiceImpl implements IWebpageService {
     }
 
     @Override
-    public Resource getUserPage() {
+    public Resource getSecurePage() {
         return userPage;
     }
 }

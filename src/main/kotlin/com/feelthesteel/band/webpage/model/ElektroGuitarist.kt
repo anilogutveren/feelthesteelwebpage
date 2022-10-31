@@ -1,7 +1,5 @@
 package com.feelthesteel.band.webpage.model
 
-import java.lang.invoke.VarHandle
-
 /**
  *
  * Bu sinifta init getter ve setter methodlari kullanildi.
@@ -12,17 +10,12 @@ import java.lang.invoke.VarHandle
 class ElektroGuitarist(var fullname: String) : Guitarist() {
 
     init {
-        fullname = "Axel"
+        fullname = "Patrick"
         println(fullname)
     }
 
     override fun plugInSpeakers() {
         println("Electro guitarist plugs in this guitar")
-    }
-
-    companion object {
-        var birthDay: String = ""
-        fun play() = println("playing electro guitar")
     }
 
     override var name: String
