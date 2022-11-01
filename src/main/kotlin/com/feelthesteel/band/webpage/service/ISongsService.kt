@@ -5,6 +5,6 @@ import com.feelthesteel.band.webpage.entity.SongEntity
 
 interface ISongsService {
     fun saveSongs(song: SongDto): SongDto
-    fun findCoveredSongs(isCovered: Boolean): SongEntity
+    fun findCoveredSongs(iscovered: Boolean): List<SongDto>
     fun deleteAllSongs()
 }

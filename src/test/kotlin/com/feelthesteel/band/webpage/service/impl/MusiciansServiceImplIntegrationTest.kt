@@ -1,8 +1,8 @@
 package com.feelthesteel.band.webpage.service.impl
 
 import com.feelthesteel.band.webpage.RepositoryTest
+import com.feelthesteel.band.webpage.dto.MusicianDto
 import com.feelthesteel.band.webpage.entity.EquipmentEntity
-import com.feelthesteel.band.webpage.entity.MusicianEntity
 import com.feelthesteel.band.webpage.model.Instrument
 import com.feelthesteel.band.webpage.repository.MusicianRepository
 import org.junit.Assert
@@ -28,9 +28,9 @@ internal class MusiciansServiceImplIntegrationTest {
     fun `test save a musician`() {
         val newEquipmentEntity = EquipmentEntity(1L, Instrument.DRUM, null)
 
-        val newMusicianEntity = MusicianEntity(1L, "testMusicianName", setOf(newEquipmentEntity))
+        val newMusicianDto = MusicianDto(1L, "testMusicianName", setOf(newEquipmentEntity))
 
-        service.saveMusician(newMusicianEntity)
+        service.saveMusician(newMusicianDto)
         val listOfMusicians = service.getAllMusicians()
 
         Assert.assertEquals(listOfMusicians.size, 1)

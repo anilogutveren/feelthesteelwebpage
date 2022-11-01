@@ -26,9 +26,9 @@ CREATE TABLE webusers
 
 CREATE TABLE songs(
     id bigint NOT NULL,
-    songName VARCHAR,
-    songGenre VARCHAR,
-    songYear VARCHAR,
+    songname VARCHAR,
+    songgenre VARCHAR,
+    songyear VARCHAR,
     isCovered BOOLEAN
 );
 

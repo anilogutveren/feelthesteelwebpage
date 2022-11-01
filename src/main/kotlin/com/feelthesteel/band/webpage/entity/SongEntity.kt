@@ -15,15 +15,15 @@ data class SongEntity(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long?,
 
-    @Column(name = "songName")
-    var songName: String,
+    @Column(name = "songname")
+    var songname: String,
 
-    @Column(name = "songGenre")
-    var songsGenre: String,
+    @Column(name = "songgenre")
+    var songgenre: String,
 
-    @Column(name = "songsYear")
-    var songsYear: Long,
+    @Column(name = "songyear")
+    var songyear: Long,
 
-    @Column(name = "isCovered")
+    @Column(name = "iscovered")
     var isCovered: Boolean
 )

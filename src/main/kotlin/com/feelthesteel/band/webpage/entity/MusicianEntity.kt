@@ -1,7 +1,9 @@
 package com.feelthesteel.band.webpage.entity
 
+import javax.persistence.CascadeType
 import javax.persistence.Column
 import javax.persistence.Entity
+import javax.persistence.FetchType
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
@@ -18,9 +20,9 @@ data class MusicianEntity(
     var id: Long,
 
     @Column(nullable = false, unique = true)
-    val name: String,
+    var name: String,
 
-    @OneToMany // (mappedBy = "musicianEntity", cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
+    @OneToMany(cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
     @JoinColumn(name = "musician_id")
-    val equipments: Set<EquipmentEntity>?
+    var equipments: Set<EquipmentEntity>?
 )

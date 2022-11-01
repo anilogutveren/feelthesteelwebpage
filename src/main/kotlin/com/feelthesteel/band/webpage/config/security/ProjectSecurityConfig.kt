@@ -24,8 +24,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
  * UserDetailService hem InMemory hem de JDBC olarak implemente edildi.
  * **/
 
-@Configuration
-@EnableWebSecurity(debug = true)
+//@Configuration
+//@EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @RequiredArgsConstructor
 class ProjectSecurityConfig() {
@@ -52,6 +52,8 @@ class ProjectSecurityConfig() {
             .authorizeRequests()
             .antMatchers("/login").permitAll()
             .antMatchers("/").permitAll()
+            .antMatchers("/musicians").permitAll()
+            .antMatchers("/**").permitAll()
             .antMatchers("/h2-console").permitAll()
             .antMatchers("/photo.jpg").permitAll()
             .antMatchers("/users/**").authenticated()

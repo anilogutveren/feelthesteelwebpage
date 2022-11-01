@@ -1,16 +1,14 @@
 package com.feelthesteel.band.webpage.controller
 
+import com.azure.core.annotation.QueryParam
 import com.feelthesteel.band.webpage.dto.SongDto
-import com.feelthesteel.band.webpage.entity.SongEntity
 import com.feelthesteel.band.webpage.service.impl.SongsServiceImpl
 import lombok.RequiredArgsConstructor
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.http.ResponseEntity
-import org.springframework.util.Assert
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestHeader
@@ -34,12 +32,12 @@ class SongsController(
         return ResponseEntity.ok(songsServiceImpl.saveSongs(songDto))
     }
 
-    @GetMapping("/coveredSongs/{name}", produces = ["application/json"])
+    @GetMapping("{isCovered}", produces = ["application/json"])
     fun getCoveredSongs(
         @RequestHeader("X-TrackingId", required = true) trackingId: String,
-        @PathVariable(value = "isCovered", required = true) isCovered: Boolean
-    ): ResponseEntity<SongEntity> {
-        logger.info("Saving the song $isCovered")
+        @QueryParam(value = "isCovered") isCovered: Boolean
+    ): ResponseEntity<List<SongDto>> {
+        logger.info("Fetching covered songs")
         return ResponseEntity.ok(songsServiceImpl.findCoveredSongs(isCovered))
     }
 

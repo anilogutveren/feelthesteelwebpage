@@ -12,6 +12,7 @@ spring:
     main:
         allow-circular-references: true
     security:
+        enabled: false
         user:
             name: anil
             password: 123

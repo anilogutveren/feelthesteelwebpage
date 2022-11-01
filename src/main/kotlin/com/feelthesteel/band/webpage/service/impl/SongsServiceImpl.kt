@@ -18,21 +18,25 @@ class SongsServiceImpl(val songsRepository: SongsRepository) : ISongsService {
     @Transactional
     override fun saveSongs(songDto: SongDto): SongDto {
         logger.info("Song $songDto will be saved")
-        val songEntity = songsRepository.save(songDto.toSongEntity())
-
+        val songEntity = songDto.toSongEntity()
+        songsRepository.save(songEntity)
         songDto.id = songEntity.id
-        songDto.songName = songEntity.songName
-        songDto.songsGenre = songEntity.songsGenre
-        songDto.songsYear = songEntity.songsYear
+        songDto.songName = songEntity.songname
+        songDto.songsGenre = songEntity.songgenre
+        songDto.songsYear = songEntity.songyear
         songDto.isCovered = songEntity.isCovered
 
         return songDto
     }
 
-    override fun findCoveredSongs(isCovered: Boolean): SongEntity {
-        logger.info("Please wait. Song are listed soon...")
-        return songsRepository.findSongByIsCovered(isCovered) ?: throw SongNotFoundException("No song is found under given name and instrument")
+    override fun findCoveredSongs(iscovered: Boolean): List<SongDto> {
+        TODO("Not yet implemented")
     }
+
+    /*    override fun findCoveredSongs(isCovered: Boolean): List<SongDto> {
+            logger.info("Please wait. Song will be listed soon...")
+            return songsRepository.findSongByIsCovered(isCovered) ?: throw SongNotFoundException("No song is found under given name")
+        }*/
 
     override fun deleteAllSongs() {
         logger.info("All Songs are deleted")
@@ -41,9 +45,9 @@ class SongsServiceImpl(val songsRepository: SongsRepository) : ISongsService {
 
     fun SongDto.toSongEntity() = SongEntity(
         id = this.id,
-        songName = this.songName,
-        songsGenre = this.songsGenre,
-        songsYear = this.songsYear,
+        songname = this.songName,
+        songgenre = this.songsGenre,
+        songyear = this.songsYear,
         isCovered = this.isCovered
     )
 }
