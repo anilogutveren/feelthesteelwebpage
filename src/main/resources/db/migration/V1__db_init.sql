@@ -26,10 +26,10 @@ CREATE TABLE webusers
 
 CREATE TABLE songs(
     id bigint NOT NULL,
-    songName VARCHAR,
-    songGenre VARCHAR,
-    songYear VARCHAR,
-    isCovered BOOLEAN
+    song_Name VARCHAR,
+    song_Genre VARCHAR,
+    song_Year VARCHAR,
+    is_Covered BOOLEAN
 );
 
 CREATE SEQUENCE hibernate_sequence start 1 increment 1;
