@@ -1,10 +1,8 @@
 package com.feelthesteel.band.webpage.exception
 
-class ExceptionHandler {
+sealed class FTSException(cause: String) : Throwable(cause) {
+    data class Unauthorized(val reason: String) : FTSException("Unauthorized Request")
+    open class NotFoundException(val reason: String) : FTSException("Not Found")
 }
 
-sealed class FTSException(cause: String) : Throwable(cause)
-
-open class NotFoundException(cause: String) : FTSException(cause)
-
-class SongNotFoundException(cause: String) : NotFoundException(cause)
+class SongNotFoundException(cause: String) : FTSException.NotFoundException(cause)
