@@ -1,17 +1,16 @@
 package com.feelthesteel.band.webpage.service.impl
 
+import com.feelthesteel.band.webpage.RepositoryTest
 import com.feelthesteel.band.webpage.entity.EquipmentEntity
 import com.feelthesteel.band.webpage.entity.MusicianEntity
 import com.feelthesteel.band.webpage.model.Instrument
 import com.feelthesteel.band.webpage.repository.MusicianRepository
-import com.feelthesteel.band.webpage.service.IMusicianService
 import org.junit.Assert
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.test.context.SpringBootTest
 
-@SpringBootTest
+@RepositoryTest
 internal class MusiciansServiceImplIntegrationTest {
 
     @Autowired

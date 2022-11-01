@@ -31,3 +31,15 @@ CREATE TABLE songs(
     songYear VARCHAR,
     isCovered BOOLEAN
 );
+
+CREATE SEQUENCE hibernate_sequence start 1 increment 1;
+CREATE TABLE event_repo(
+        id bigint default nextval('hibernate_sequence'::regclass) not null,
+        event_type varchar,
+        call_date date,
+        http_session_id varchar,
+        cookie varchar,
+        uri varchar,
+        method_type varchar,
+        remote_addr varchar
+);

@@ -42,12 +42,12 @@ public class WebpageServiceImpl implements IWebpageService {
         }
 
         PageCall pageCall = new PageCall();
-        pageCall.setDate(new Date());
+        pageCall.setCallDate(new Date());
         pageCall.setEventType(PageCall.EventType.PAGE_CALLED.getValue());
         pageCall.setHttpSessionId(request.getSession().getId());
         pageCall.setCookie(request.getHeader("Cookie"));
         pageCall.setUri(request.getRequestURI());
-        pageCall.setMethod(request.getMethod());
+        pageCall.setMethodType(request.getMethod());
         pageCall.setRemoteAddr(request.getRemoteAddr());
 
 

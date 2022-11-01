@@ -2,7 +2,7 @@ package com.feelthesteel.band.webpage.service.impl
 
 import com.feelthesteel.band.webpage.dto.SongDto
 import com.feelthesteel.band.webpage.entity.SongEntity
-import com.feelthesteel.band.webpage.exception.FtsAppCustomException
+import com.feelthesteel.band.webpage.exception.SongNotFoundException
 import com.feelthesteel.band.webpage.repository.SongsRepository
 import com.feelthesteel.band.webpage.service.ISongsService
 import org.slf4j.Logger
@@ -31,7 +31,7 @@ class SongsServiceImpl(val songsRepository: SongsRepository) : ISongsService {
 
     override fun findCoveredSongs(isCovered: Boolean): SongEntity {
         logger.info("Please wait. Song are listed soon...")
-        return songsRepository.findSongByIsCovered(isCovered) ?: throw FtsAppCustomException("No song is found under given name and instrument")
+        return songsRepository.findSongByIsCovered(isCovered) ?: throw SongNotFoundException("No song is found under given name and instrument")
     }
 
     override fun deleteAllSongs() {
