@@ -1,4 +1,4 @@
-package com.feelthesteel.band.webpage
+package com.feelthesteel.band.webpage.testconfig
 
 import org.flywaydb.core.Flyway
 import org.springframework.boot.autoconfigure.flyway.FlywayMigrationStrategy

@@ -1,13 +1,7 @@
 package com.feelthesteel.band.webpage.dto
 
-import com.feelthesteel.band.webpage.entity.EquipmentEntity
 import javax.validation.constraints.NotNull
-import lombok.AllArgsConstructor
-import lombok.Builder
-import lombok.Data
 import lombok.EqualsAndHashCode
-import lombok.NoArgsConstructor
-
 
 @EqualsAndHashCode(of = ["id"])
 data class MusicianDto(
@@ -17,5 +11,5 @@ data class MusicianDto(
     @NotNull
     val name: String,
 
-    val equipments: Set<EquipmentEntity>?
+    val equipments: String
 )

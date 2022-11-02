@@ -1,22 +1,21 @@
 package com.feelthesteel.band.webpage.service.impl
 
-import com.feelthesteel.band.webpage.RepositoryTest
-import com.feelthesteel.band.webpage.entity.EquipmentEntity
 import com.feelthesteel.band.webpage.entity.MusicianEntity
-import com.feelthesteel.band.webpage.model.Instrument
 import com.feelthesteel.band.webpage.repository.MusicianRepository
 import org.junit.Assert
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.test.context.ActiveProfiles
 
-@RepositoryTest
+@SpringBootTest
+@ActiveProfiles("test")
 internal class MusiciansServiceImplIntegrationTest {
 
     @Autowired
     private lateinit var repository: MusicianRepository
 
-    @Autowired
     private lateinit var service: MusiciansServiceImpl
 
     @BeforeEach
@@ -25,10 +24,8 @@ internal class MusiciansServiceImplIntegrationTest {
     }
 
     @Test
-    fun `test save a musician`() {
-        val newEquipmentEntity = EquipmentEntity(1L, Instrument.DRUM, null)
-
-        val newMusicianEntity = MusicianEntity(1L, "testMusicianName", setOf(newEquipmentEntity))
+    fun `test register a new musician`() {
+        val newMusicianEntity = MusicianEntity(2L, "testMusicianName2", "DRUMS")
 
         service.saveMusician(newMusicianEntity)
         val listOfMusicians = service.getAllMusicians()

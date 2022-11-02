@@ -5,8 +5,6 @@ import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
-import javax.persistence.JoinColumn
-import javax.persistence.OneToMany
 import javax.persistence.Table
 
 @Entity
@@ -20,7 +18,5 @@ data class MusicianEntity(
     @Column(nullable = false, unique = true)
     val name: String,
 
-    @OneToMany // (mappedBy = "musicianEntity", cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
-    @JoinColumn(name = "musician_id")
-    val equipments: Set<EquipmentEntity>?
+    val equipments: String
 )

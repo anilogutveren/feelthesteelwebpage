@@ -9,14 +9,12 @@ import com.feelthesteel.band.webpage.service.IMusicianService
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
-import org.springframework.transaction.annotation.Transactional
 
 @Service
 class MusiciansServiceImpl(val repository: MusicianRepository) : IMusicianService {
 
     val logger: Logger = LoggerFactory.getLogger(this.javaClass)
 
-    @Transactional
     override fun saveMusician(musicianEntity: MusicianEntity) {
         logger.info("Musician is saved")
         repository.save(musicianEntity)

@@ -1,4 +1,4 @@
-package com.feelthesteel.band.webpage
+package com.feelthesteel.band.webpage.testconfig
 
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
 

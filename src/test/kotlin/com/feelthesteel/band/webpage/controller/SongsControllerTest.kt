@@ -34,7 +34,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers
 @Import(ProjectSecurityConfig::class, UserAuthDetailsService::class, TokenManager::class)
 @AutoConfigureMockMvc(addFilters = false)
 @ActiveProfiles("test")
-internal class SongsControllerTest() {
+internal class SongsControllerTest {
 
     private val CONTENT_TYPE = "application/json"
     private val TRACKING_ID = "abcde"
@@ -60,7 +60,7 @@ internal class SongsControllerTest() {
         )
 
         val captor = argumentCaptor<SongDto>()
-        verify(songsServiceImpl, Mockito.times(1)).saveSongs(captor.capture())
+        verify(songsServiceImpl, times(1)).saveSongs(captor.capture())
         assertThat(captor.allValues.any { it.songName == "testSong" })
         actions.andExpect(MockMvcResultMatchers.status().isOk)
     }
