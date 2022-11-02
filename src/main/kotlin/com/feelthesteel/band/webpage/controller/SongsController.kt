@@ -7,7 +7,6 @@ import lombok.RequiredArgsConstructor
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.http.ResponseEntity
-import org.springframework.util.Assert
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
@@ -34,7 +33,7 @@ class SongsController(
         return ResponseEntity.ok(songsServiceImpl.saveSongs(songDto))
     }
 
-    @GetMapping("/coveredSongs/{name}", produces = ["application/json"])
+    @GetMapping("/coveredSongs/{isCovered}", produces = ["application/json"])
     fun getCoveredSongs(
         @RequestHeader("X-TrackingId", required = true) trackingId: String,
         @PathVariable(value = "isCovered", required = true) isCovered: Boolean

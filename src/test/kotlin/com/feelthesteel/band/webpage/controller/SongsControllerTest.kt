@@ -5,6 +5,7 @@ import com.feelthesteel.band.webpage.config.security.ProjectSecurityConfig
 import com.feelthesteel.band.webpage.config.security.auth.TokenManager
 import com.feelthesteel.band.webpage.config.security.auth.UserAuthDetailsService
 import com.feelthesteel.band.webpage.dto.SongDto
+import com.feelthesteel.band.webpage.entity.SongEntity
 import com.feelthesteel.band.webpage.service.impl.SongsServiceImpl
 import com.nhaarman.mockitokotlin2.argumentCaptor
 import com.nhaarman.mockitokotlin2.verify
@@ -12,6 +13,8 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.mockito.Mockito
+import org.mockito.Mockito.times
+import org.mockito.Mockito.`when`
 import org.mockito.junit.jupiter.MockitoExtension
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
@@ -21,6 +24,8 @@ import org.springframework.context.annotation.Import
 import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.junit.jupiter.SpringExtension
 import org.springframework.test.web.servlet.MockMvc
+import org.springframework.test.web.servlet.MvcResult
+import org.springframework.test.web.servlet.ResultActions
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers
 
@@ -47,7 +52,7 @@ internal class SongsControllerTest() {
     fun addNewSong() {
         val songDto = SongDto(1, "testSong", "testGenre", 1987, true)
 
-        val actions = mockMvc.perform(
+        val actions: ResultActions = mockMvc.perform(
             MockMvcRequestBuilders.post("/songs/addNewSong")
                 .header("X-TrackingId", TRACKING_ID)
                 .contentType(CONTENT_TYPE)
@@ -62,6 +67,18 @@ internal class SongsControllerTest() {
 
     @Test
     fun getCoveredSongs() {
+        val songDto = SongEntity(1, "testSong", "testGenre", 1987, true)
+        `when`(songsServiceImpl.findCoveredSongs(true)).thenReturn(songDto)
+
+        val mvcResult: MvcResult = mockMvc.perform(
+            MockMvcRequestBuilders.get("/songs/coveredSongs/true")
+                .header("X-TrackingId", TRACKING_ID)
+                .contentType(CONTENT_TYPE)
+        ).andReturn()
+
+        val responseBody = mvcResult.response.contentAsString
+        verify(songsServiceImpl, times(1)).findCoveredSongs(true)
+        assertThat(objectMapper.writeValueAsString(songDto)).isEqualToIgnoringWhitespace(responseBody)
     }
 
     @Test
