@@ -16,4 +16,8 @@ class ApiExceptionHandler {
         log.error("Entity Not Found: ${ex.message}", ex)
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Entity Not Found \n${ex.message}")
     }
+
+    /*    @ExceptionHandler(FTSException::class)
+        @RequestMapping(produces = [MediaType.APPLICATION_JSON_VALUE] )
+        fun handleFTSExceptions(exception: Throwable) =*/
 }

@@ -1,7 +1,8 @@
 package com.feelthesteel.band.webpage.controller
 
+import com.feelthesteel.band.webpage.dto.SongDto
 import com.feelthesteel.band.webpage.entity.SongEntity
-import com.feelthesteel.band.webpage.service.ISongsService
+import com.feelthesteel.band.webpage.service.impl.SongsServiceImpl
 import lombok.RequiredArgsConstructor
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -19,32 +20,32 @@ import org.springframework.web.bind.annotation.RestController
 @RequiredArgsConstructor
 @RequestMapping("/songs")
 class SongsController(
-    private val songsService: ISongsService
+    private val songsServiceImpl: SongsServiceImpl
 ) {
     private val logger: Logger = LoggerFactory.getLogger(this.javaClass)
 
     @PostMapping("/addNewSong", produces = ["application/json"])
-    fun saveSong(
+    fun addNewSong(
         @RequestHeader("X-TrackingId", required = true) trackingId: String,
-        @RequestBody songEntity: SongEntity
-    ): ResponseEntity<SongEntity> {
-        logger.info("Saving the song $songEntity")
-        return ResponseEntity.ok(songsService.saveSongs(songEntity))
+        @RequestBody songDto: SongDto
+    ): ResponseEntity<SongDto> {
+        logger.info("Saving the song $songDto")
+        return ResponseEntity.ok(songsServiceImpl.saveSongs(songDto))
     }
 
-    @GetMapping("/coveredSongs/{name}", produces = ["application/json"])
+    @GetMapping("/coveredSongs/{isCovered}", produces = ["application/json"])
     fun getCoveredSongs(
         @RequestHeader("X-TrackingId", required = true) trackingId: String,
         @PathVariable(value = "isCovered", required = true) isCovered: Boolean
     ): ResponseEntity<SongEntity> {
         logger.info("Saving the song $isCovered")
-        return ResponseEntity.ok(songsService.findCoveredSongs(isCovered))
+        return ResponseEntity.ok(songsServiceImpl.findCoveredSongs(isCovered))
     }
 
     @DeleteMapping("/deleteAllSongs")
     fun deleteAllSongs(
         @RequestHeader("X-TrackingId", required = true) trackingId: String
     ): ResponseEntity<Any> {
-        return ResponseEntity.ok(songsService.deleteAllSongs())
+        return ResponseEntity.ok(songsServiceImpl.deleteAllSongs())
     }
 }

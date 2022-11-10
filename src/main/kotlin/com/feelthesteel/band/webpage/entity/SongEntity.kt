@@ -8,25 +8,22 @@ import javax.persistence.Id
 import javax.persistence.Table
 
 @Entity
-@Table(name = "songsTable")
+@Table(name = "songs")
 data class SongEntity(
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var id: Long,
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    var id: Long?,
 
-    @Column(name = "songName")
+    @Column(name = "song_Name")
     var songName: String,
 
-    @Column(name = "songNumber")
-    var songNumber: Long,
-
-    @Column(name = "songGenre")
+    @Column(name = "song_Genre")
     var songsGenre: String,
 
-    @Column(name = "songsYear")
+    @Column(name = "song_Year")
     var songsYear: Long,
 
-    @Column(name = "isCovered")
+    @Column(name = "is_Covered")
     var isCovered: Boolean
 )

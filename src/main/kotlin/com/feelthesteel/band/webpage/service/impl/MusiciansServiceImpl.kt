@@ -1,8 +1,9 @@
 package com.feelthesteel.band.webpage.service.impl
 
+import com.feelthesteel.band.webpage.dto.MusicianDto
 import com.feelthesteel.band.webpage.entity.MusicianEntity
+import com.feelthesteel.band.webpage.entity.mapper.MusicianEntitytoDtoMapper.toMusicianDto
 import com.feelthesteel.band.webpage.exception.FtsAppCustomException
-import com.feelthesteel.band.webpage.model.Instrument
 import com.feelthesteel.band.webpage.repository.MusicianRepository
 import com.feelthesteel.band.webpage.service.IMusicianService
 import org.slf4j.Logger
@@ -29,9 +30,8 @@ class MusiciansServiceImpl(val repository: MusicianRepository) : IMusicianServic
         repository.deleteAll()
     }
 
-    override fun findMusicianByNameAndInstrument(name: String, instrument: Instrument): MusicianEntity {
-        logger.info("Musician will be found")
-        return repository.findMusicianByNameAndInstrument(name, instrument)
+    override fun findMusicianByName(name: String): MusicianDto {
+        return repository.findMusicianByName(name)?.toMusicianDto()
             ?: throw FtsAppCustomException("No musician is found under given name and instrument")
     }
 

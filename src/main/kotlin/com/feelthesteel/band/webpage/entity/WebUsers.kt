@@ -1,6 +1,7 @@
 package com.feelthesteel.band.webpage.entity
 
 import javax.persistence.Column
+import javax.persistence.Embedded
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
@@ -8,20 +9,18 @@ import javax.persistence.Id
 import javax.persistence.Table
 
 @Entity
-@Table(name = "userTable")
-data class UserEntity(
-
+@Table(name = "webusers")
+data class WebUsers(
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     var id: Long,
 
-    @Column(name = "name", unique = true)
-    val username: String,
+    @Column(unique = true)
+    var username: String,
 
     @Column
     var password: String,
 
-    @Column
-    var role: String
-
+    @Embedded
+    var role: Roles
 )

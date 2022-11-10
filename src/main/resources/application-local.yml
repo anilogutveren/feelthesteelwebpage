@@ -1,19 +1,26 @@
 server:
     port: 8085
 spring:
-    security:
-        enabled: false
-        user:
-            name: admin
-            password: adminPassword
+    flyway:
+        url: jdbc:postgresql://localhost:5432/postgres
+        user: musiciansname
+        password: anilstraining_2022
     jpa:
         hibernate:
-            ddl-auto: update
+            ddl-auto: none
+        database: postgresql
+    main:
+        allow-circular-references: true
+    security:
+        user:
+            name: anil
+            password: 123
         database: postgresql
     datasource:
         url: jdbc:postgresql://localhost:5432/postgres
         username: musiciansname
         password: anilstraining_2022
+        driver-class-name: org.postgresql.Driver
     session:
         jdbc:
             initialize-schema: always
@@ -24,7 +31,7 @@ logging:
     level:
         org:
             springframework:
-                security: DEBUG
+                security: off
 songs:
     ownedsongs:
         - "Devil In my Town"
@@ -34,4 +41,4 @@ songs:
         - "Seal the Deal"
 jwt:
     key: ""
-    header: "Auhtorization"
+    header: "Authorization"

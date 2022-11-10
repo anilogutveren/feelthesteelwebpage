@@ -1,4 +1,5 @@
 package com.feelthesteel.band.webpage.model
+
 /*
  * Enum is used
  */
