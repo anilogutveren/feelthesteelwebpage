@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h3>Home</h3>
+    <h2>Homepage</h2>
     <img alt="Fts logo" src="../assets/fts.jpg">
     <hr>
     <p>{{admin}}</p>
@@ -12,7 +12,6 @@
 </template>
 
 <script>
-import axios from "axios";
 
 export default {
   name: "HomePage",
@@ -20,14 +19,6 @@ export default {
     return {
       admin : ""
     }
-  },
-  created(){
-    axios.get("http://localhost:8085/login")
-        .then(response => {
-          this.admin = response.data
-          console.log(response.data)
-        })
-        .catch(e => console.log(e))
   }
 }
 </script>
