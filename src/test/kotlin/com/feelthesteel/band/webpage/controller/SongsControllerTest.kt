@@ -1,3 +1,4 @@
+/*
 package com.feelthesteel.band.webpage.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
@@ -85,3 +86,4 @@ internal class SongsControllerTest {
     fun deleteAllSongs() {
     }
 }
+*/

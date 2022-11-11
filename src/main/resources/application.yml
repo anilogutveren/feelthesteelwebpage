@@ -1,6 +1,6 @@
 spring:
     security:
-        enabled: false
+        enabled: true
         user:
             name: admin
             password: adminPassword
