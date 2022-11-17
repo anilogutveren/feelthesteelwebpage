@@ -4,14 +4,14 @@ import com.feelthesteel.band.webpage.dto.SongDto
 import com.feelthesteel.band.webpage.entity.SongEntity
 import com.feelthesteel.band.webpage.exception.SongNotFoundException
 import com.feelthesteel.band.webpage.repository.SongsRepository
-import com.feelthesteel.band.webpage.service.ISongsService
+import com.feelthesteel.band.webpage.service.SongsService
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 @Service
-class SongsServiceImpl(val songsRepository: SongsRepository) : ISongsService {
+class SongsServiceImpl(val songsRepository: SongsRepository) : SongsService {
 
     val logger: Logger = LoggerFactory.getLogger(this.javaClass)
 

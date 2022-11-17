@@ -21,7 +21,7 @@ import org.springframework.test.context.ActiveProfiles
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("test")
 @ExtendWith(WireMockExtension::class)
-internal class MusicianControllerTestWithVM() {
+internal class MusicianControllerTestWithWM() {
 
     val wiremock: WireMockServer = with(WireMockConfiguration.wireMockConfig().dynamicPort())
 
@@ -47,6 +47,6 @@ internal class MusicianControllerTestWithVM() {
         )
 
         // We're asserting if WireMock responded properly
-        assertThat(this.musiciansServiceImpl.getAllMusicians()).isEqualTo(listOf(null))
+        assertThat(this.musiciansServiceImpl.getAllMusicians()).isNotNull
     }
 }

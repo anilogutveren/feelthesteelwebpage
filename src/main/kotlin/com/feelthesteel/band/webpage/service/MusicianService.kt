@@ -3,7 +3,7 @@ package com.feelthesteel.band.webpage.service
 import com.feelthesteel.band.webpage.dto.MusicianDto
 import com.feelthesteel.band.webpage.entity.MusicianEntity
 
-interface IMusicianService {
+interface MusicianService {
     fun saveMusician(musicianEntity: MusicianEntity)
     fun saveMultipleMusicians(musicianEntities: List<MusicianEntity>)
     fun deleteAllMusicians()

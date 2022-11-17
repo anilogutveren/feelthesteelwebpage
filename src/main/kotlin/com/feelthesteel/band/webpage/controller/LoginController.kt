@@ -20,6 +20,7 @@ class LoginController(
 ) {
     @Autowired
     private lateinit var authenticationManager: AuthenticationManager
+
     @PostMapping
     fun login(@RequestBody loginRequest: LoginRequest): ResponseEntity<String?>? {
         return try {

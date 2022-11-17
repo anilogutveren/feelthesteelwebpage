@@ -3,7 +3,7 @@ package com.feelthesteel.band.webpage.service.impl;
 import com.feelthesteel.band.webpage.dto.PageCall;
 import com.feelthesteel.band.webpage.event.PageCalledEvent;
 import com.feelthesteel.band.webpage.repository.PageCalledRepository;
-import com.feelthesteel.band.webpage.service.IWebpageService;
+import com.feelthesteel.band.webpage.service.WebpageService;
 import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
@@ -16,7 +16,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
 @Service
-public class WebpageServiceImpl implements IWebpageService {
+public class WebpageServiceImpl implements WebpageService {
 
     @Value("classpath:/static/main.html")
     private Resource mainPage;

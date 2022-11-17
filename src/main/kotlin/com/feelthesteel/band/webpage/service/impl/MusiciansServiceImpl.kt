@@ -5,13 +5,13 @@ import com.feelthesteel.band.webpage.entity.MusicianEntity
 import com.feelthesteel.band.webpage.entity.mapper.MusicianEntitytoDtoMapper.toMusicianDto
 import com.feelthesteel.band.webpage.exception.FtsAppCustomException
 import com.feelthesteel.band.webpage.repository.MusicianRepository
-import com.feelthesteel.band.webpage.service.IMusicianService
+import com.feelthesteel.band.webpage.service.MusicianService
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
 
 @Service
-class MusiciansServiceImpl(val repository: MusicianRepository) : IMusicianService {
+class MusiciansServiceImpl(val repository: MusicianRepository) : MusicianService {
 
     val logger: Logger = LoggerFactory.getLogger(this.javaClass)
 
