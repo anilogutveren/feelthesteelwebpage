@@ -17,12 +17,12 @@ class JwtTokenFilter(
 ) : OncePerRequestFilter() {
 
     override fun doFilterInternal(httpServletRequest: HttpServletRequest, httpServletResponse: HttpServletResponse, filterChain: FilterChain) {
-        val authHeader: String = httpServletRequest.getHeader("Authorization")
+        val authHeader: String? = httpServletRequest.getHeader("Authorization")
 
         var username: String? = null
         var token: String? = null
 
-        if (authHeader.contains("Bearer")) {
+        if (authHeader?.contains("Bearer") == true) {
             token = authHeader.substring(7)
             try {
                 username = tokenManager.getUsernameToken(token)

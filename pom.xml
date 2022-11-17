@@ -18,6 +18,7 @@
         <kotlin.version>1.6.21</kotlin.version>
         <spring-cloud-azure.version>4.3.0</spring-cloud-azure.version>
         <testcontainers.version>1.17.5</testcontainers.version>
+        <kotlin.coroutines.version>1.6.4</kotlin.coroutines.version>
         <mockitokotlin2-version>2.2.0</mockitokotlin2-version>
     </properties>
     <dependencies>
@@ -40,6 +41,8 @@
             <groupId>com.azure.spring</groupId>
             <artifactId>spring-cloud-azure-starter</artifactId>
         </dependency>
+
+        <!--Kotlin-->
         <dependency>
             <groupId>com.fasterxml.jackson.module</groupId>
             <artifactId>jackson-module-kotlin</artifactId>
@@ -47,6 +50,16 @@
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-reflect</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains.kotlinx</groupId>
+            <artifactId>kotlinx-coroutines-core</artifactId>
+            <version>${kotlin.coroutines.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains.kotlinx</groupId>
+            <artifactId>kotlinx-coroutines-slf4j</artifactId>
+            <version>${kotlin.coroutines.version}</version>
         </dependency>
 
         <!--DB-->

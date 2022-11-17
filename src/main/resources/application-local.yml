@@ -39,6 +39,9 @@ songs:
         - "Enter Sandman"
         - "Mother"
         - "Seal the Deal"
+clients:
+    blogpage:
+        basePath: "http://localhost:8083"
 jwt:
     key: ""
     header: "Authorization"
