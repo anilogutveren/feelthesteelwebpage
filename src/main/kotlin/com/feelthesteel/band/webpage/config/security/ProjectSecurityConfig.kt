@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.authentication.AuthenticationManager
@@ -18,6 +19,9 @@ import org.springframework.security.config.http.SessionCreationPolicy
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.web.SecurityFilterChain
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
+import org.springframework.web.cors.CorsConfiguration
+import org.springframework.web.cors.reactive.CorsWebFilter
+import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource
 
 /**
  * Burada Spring Security kullanildi.
@@ -73,6 +77,19 @@ class ProjectSecurityConfig() {
         return authenticationConfiguration.authenticationManager
     }
 
+    @Bean
+    @ConditionalOnProperty(value = ["security.jwt.enabled"], havingValue = "false")
+    fun corsWebFilter(): CorsWebFilter {
+        val corsConfig = CorsConfiguration()
+        corsConfig.allowedOrigins = listOf("http://localhost:8082")
+        corsConfig.maxAge = 80000L
+        corsConfig.addAllowedMethod("*")
+        corsConfig.addAllowedHeader("*")
+        val source = UrlBasedCorsConfigurationSource()
+        source.registerCorsConfiguration("/**", corsConfig)
+        return CorsWebFilter(source)
+    }
+}
     /*    @Bean("bcrypt")
         fun getBCryptPasswordEncoder(): BCryptPasswordEncoder {
             return BCryptPasswordEncoder(16)
@@ -81,5 +98,17 @@ class ProjectSecurityConfig() {
         @Bean("noops")
         fun getNoOpPasswordEncoder(): PasswordEncoder {
             return NoOpPasswordEncoder.getInstance()
-        }*/
-}
+        }
+
+    @Bean
+    @ConditionalOnProperty(value = ["security.jwt.enabled"], havingValue = "false")
+    fun corsWebFilter(): CorsWebFilter {
+        val corsConfig = CorsConfiguration()
+        corsConfig.allowedOrigins = listOf("http://localhost:8082")
+        corsConfig.maxAge = 80000L
+        corsConfig.addAllowedMethod("*")
+        corsConfig.addAllowedHeader("*")
+        val source = UrlBasedCorsConfigurationSource()
+        source.registerCorsConfiguration("/**", corsConfig)
+        return CorsWebFilter(source)
+    }*/

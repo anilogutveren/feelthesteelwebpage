@@ -9,6 +9,7 @@ import org.springframework.web.filter.OncePerRequestFilter
 import javax.servlet.FilterChain
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
+import javax.servlet.http.HttpServletResponse.SC_OK
 
 @Component
 class JwtTokenFilter(
@@ -37,6 +38,15 @@ class JwtTokenFilter(
                 userPassToken.details = WebAuthenticationDetailsSource().buildDetails(httpServletRequest)
                 SecurityContextHolder.getContext().authentication = userPassToken
             }
+        }
+
+        httpServletResponse.setHeader("Access-Control-Allow-Origin", "*")
+        httpServletResponse.setHeader("Access-Control-Allow-Methods", "*")
+        httpServletResponse.setHeader("Access-Control-Max-Age", "80000L")
+        httpServletResponse.setHeader("Access-Control-Allow-Headers", "*")
+
+        if ("OPTIONS" == httpServletRequest.method) {
+            httpServletResponse.status = SC_OK
         }
 
         filterChain.doFilter(httpServletRequest, httpServletResponse)
