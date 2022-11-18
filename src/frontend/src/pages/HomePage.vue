@@ -15,11 +15,7 @@
       </div>
     </div>
   </div>
-  <hr>
-  <button class="button-container d-flex  flex-column align-items-center"
-          @click="getNews">Fetch News
-  </button>
-  <hr>
+
 </template>
 
 <script>
@@ -34,8 +30,7 @@ export default {
       newsList: []
     }
   },
-  methods: {
-    getNews() {
+  created(){
       let newsLink = "http://localhost:8085/news/latest"
       customAxios.get(newsLink).then(response => {
             let responseData = response.data;
@@ -46,7 +41,6 @@ export default {
           }
       )
     }
-  }
 }
 </script>
 
