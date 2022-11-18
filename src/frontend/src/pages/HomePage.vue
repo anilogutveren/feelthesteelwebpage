@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h2>Homepage</h2>
-    <img alt="Fts logo" src="../assets/fts.jpg">
+    <img alt="Fts logo" src="../assets/Goodbye_Prophecy.jpeg">
     <hr>
     <p>{{admin}}</p>
     <br>
