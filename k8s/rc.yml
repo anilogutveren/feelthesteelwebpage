@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: rcfeelthesteelapp
+  namespace: nspersonalpage
+spec:
+  replicas: 2
+  selector:
+    rc-name: my-rc
+  template:                                   # pod definition starts from here
+    metadata:
+      name: feelthesteelapppod
+      labels:
+        rc-name: my-rc
+        app: my-label-1
+    spec:
+      containers:
+      - name: container
+        image: mybandscontainerregistry.azurecr.io/feelthesteelapp:latest
+        ports:
+        - containerPort: 8080

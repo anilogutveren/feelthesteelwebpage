@@ -1,6 +1,6 @@
 spring:
     flyway:
-        url: jdbc:postgresql://db:5432/postgres
+        url: jdbc:postgresql://localhost:5432/postgres
         user: musiciansname
         password: anilstraining_2022
     jpa:
@@ -14,7 +14,7 @@ spring:
             password: adminPassword
         database: postgresql
     datasource:
-        url: jdbc:postgresql://db:5432/postgres
+        url: jdbc:postgresql://ftspostgresqldb.postgres.database.azure.com:5432/postgres?sslmode=require
         username: musiciansname
         password: anilstraining_2022
         driver-class-name: org.postgresql.Driver
