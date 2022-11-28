@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: feelthesteelapppod
-  namespace: nspersonalpage
+  namespace: nsfeelthesteel
 spec:
   containers:
     - name: feelthesteelapp
