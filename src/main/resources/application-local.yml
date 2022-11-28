@@ -46,3 +46,19 @@ clients:
 jwt:
     key: ""
     header: "Authorization"
+resilience4j:
+    circuitbreaker:
+        configs:
+            default:
+                failureRateThreshold: 50
+                slidingWindowSize: 3
+                waitDurationInOpenState: 10s
+                registerHealthIndicator: false
+        instances:
+            personalpage:
+                baseConfig: default
+        retry:
+            instances:
+                personalpage:
+                    maxAttempts: 2
+                    waitDuration: 10s

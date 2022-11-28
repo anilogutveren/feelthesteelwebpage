@@ -29,7 +29,7 @@ import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource
  * **/
 
 @Configuration
-@EnableWebSecurity(debug = true)
+@EnableWebSecurity//(debug = true)
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @RequiredArgsConstructor
 class ProjectSecurityConfig() {

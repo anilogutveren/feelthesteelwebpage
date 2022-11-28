@@ -1,33 +1,49 @@
 spring:
-    flyway:
-        url: jdbc:postgresql://db:5432/postgres
-        user: musiciansname
-        password: anilstraining_2022
-    jpa:
-        hibernate:
-            ddl-auto: none
-        database: postgresql
-    security:
-        enabled: true
-        user:
-            name: admin
-            password: adminPassword
-        database: postgresql
-    datasource:
-        url: jdbc:postgresql://db:5432/postgres
-        username: musiciansname
-        password: anilstraining_2022
-        driver-class-name: org.postgresql.Driver
-    session:
-        jdbc:
-            initialize-schema: always
-        store-type: jdbc
-        timeout:
-            seconds: 900
+  flyway:
+    url: jdbc:postgresql://db:5432/postgres
+    user: musiciansname
+    password: anilstraining_2022
+  jpa:
+    hibernate:
+      ddl-auto: none
+    database: postgresql
+  security:
+    enabled: true
+    user:
+      name: admin
+      password: adminPassword
+    database: postgresql
+  datasource:
+    url: jdbc:postgresql://db:5432/postgres
+    username: musiciansname
+    password: anilstraining_2022
+    driver-class-name: org.postgresql.Driver
+  session:
+    jdbc:
+      initialize-schema: always
+    store-type: jdbc
+    timeout:
+      seconds: 900
 songs:
-    ownedsongs:
-        - "Devil In my Town"
-    coveredsongs:
-        - "Enter Sandman"
-        - "Mother"
-        - "Seal the Deal"
+  ownedsongs:
+    - "Devil In my Town"
+  coveredsongs:
+    - "Enter Sandman"
+    - "Mother"
+    - "Seal the Deal"
+resilience4j:
+  circuitbreaker:
+    configs:
+      default:
+        failureRateThreshold: 50
+        slidingWindowSize: 10
+        waitDurationInOpenState: 30s
+        registerHealthIndicator: false
+    instances:
+        personalpage:
+            baseConfig: default
+    retry:
+        instances:
+            personalpage:
+                maxAttempts: 2
+                waitDuration: 10s
