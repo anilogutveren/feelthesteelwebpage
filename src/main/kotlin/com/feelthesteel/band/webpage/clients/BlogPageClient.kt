@@ -40,6 +40,6 @@ class BlogPageClient(
 
     fun fallbackGetAllLatestNews(throwable: Throwable): List<NewsEntity> {
         logger.error("Error= $throwable")
-        return listOf(NewsEntity(1, ""))
+        return listOf(NewsEntity(1, "FallBackNews Error"))
     }
 }

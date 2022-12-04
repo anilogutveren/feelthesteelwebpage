@@ -17,6 +17,7 @@
         <java.version>17</java.version>
         <kotlin.version>1.6.21</kotlin.version>
         <spring-cloud-azure.version>4.3.0</spring-cloud-azure.version>
+        <spring-cloud.version>2021.0.5</spring-cloud.version>
         <testcontainers.version>1.17.5</testcontainers.version>
         <kotlin.coroutines.version>1.6.4</kotlin.coroutines.version>
         <mockitokotlin2-version>2.2.0</mockitokotlin2-version>
@@ -37,9 +38,20 @@
             <artifactId>spring-boot-starter-web</artifactId>
             <version>2.7.5</version>
         </dependency>
+        <!--Spring Cloud-->
         <dependency>
             <groupId>com.azure.spring</groupId>
             <artifactId>spring-cloud-azure-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-config-client</artifactId>
+            <version>3.1.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bootstrap</artifactId>
+            <version>3.1.5</version>
         </dependency>
         <dependency>
             <groupId>com.azure.spring</groupId>
