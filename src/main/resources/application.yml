@@ -1,4 +1,6 @@
 spring:
+  profiles:
+    active: @activatedProperties@
   flyway:
     url: jdbc:postgresql://ftspostgresqldb.postgres.database.azure.com:5432/postgres
     user: musiciansname

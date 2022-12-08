@@ -21,6 +21,24 @@
         <kotlin.coroutines.version>1.6.4</kotlin.coroutines.version>
         <mockitokotlin2-version>2.2.0</mockitokotlin2-version>
     </properties>
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <activatedProperties>dev</activatedProperties>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>localdockercompose</id>
+            <properties>
+                <activatedProperties>localdockercompose</activatedProperties>
+            </properties>
+        </profile>
+    </profiles>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
