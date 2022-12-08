@@ -7,17 +7,25 @@ services:
     restart: always
     container_name: db
     ports:
-      - 8001:5432
+      - 5432:5432
     environment:
       POSTGRES_USER: musiciansname
       POSTGRES_PASSWORD: anilstraining_2022
-  web:
+  backend:
     build: .
-    container_name: webapp
+    container_name: backend_app
     depends_on:
       - "db"
     ports:
       - "8085:8080"
+  frontend:
+    build: ./src/frontend
+    container_name: frontend_app
+    image: feelthesteelfrontendapp
+    ports:
+      - "8082:8080"
+    depends_on:
+      - "backend"
 networks:
   default:
     name: kopru
