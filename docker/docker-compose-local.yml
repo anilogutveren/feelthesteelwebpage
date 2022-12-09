@@ -12,16 +12,16 @@ services:
       POSTGRES_USER: musiciansname
       POSTGRES_PASSWORD: anilstraining_2022
   backend:
-    build: ..
-    container_name: mybandscontainerregistry.azurecr.io/ftsbackendapp
+    build: ../../
+    container_name: feelthesteelwebpage-backend
     depends_on:
       - "db"
     ports:
       - "8085:8080"
   frontend:
-    build: ../src/frontend
+    build: ../../src/frontend
     container_name: frontend_app
-    image: mybandscontainerregistry.azurecr.io/feelthesteelfrontendapp
+    image: feelthesteelfrontendapp
     ports:
       - "8082:8080"
     depends_on:

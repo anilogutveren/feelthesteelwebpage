@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: feelthesteelapppod
+  name: ftspod
   namespace: nsfeelthesteel
 spec:
   containers:
     - name: feelthesteelapp
-      image: mybandscontainerregistry.azurecr.io/feelthesteelapp:latest
+      image: mybandscontainerregistry.azurecr.io/ftsbackendapp:latest
       ports:
         - containerPort: 8080
       resources:

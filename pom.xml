@@ -38,6 +38,13 @@
                 <activatedProperties>localdockercompose</activatedProperties>
             </properties>
         </profile>
+
+        <profile>
+            <id>azure</id>
+            <properties>
+                <activatedProperties>azure</activatedProperties>
+            </properties>
+        </profile>
     </profiles>
     <dependencies>
         <dependency>

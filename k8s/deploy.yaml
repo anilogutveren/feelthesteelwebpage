@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  namespace: nsfeelthesteel
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+      - name: frontend
+        image: mybandscontainerregistry.azurecr.io/feelthesteelfrontendapp:latest
+        ports:
+        - containerPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+  namespace: nsfeelthesteel
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - name: backend
+        image: mybandscontainerregistry.azurecr.io/ftsbackendapp:latest
+        ports:
+        - containerPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backendpersonalpage
+  namespace: nsfeelthesteel
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: backendpersonalpage
+  template:
+    metadata:
+      labels:
+        app: backendpersonalpage
+    spec:
+      containers:
+      - name: backendpersonalpage
+        image: mybandscontainerregistry.azurecr.io/personalpage:latest
+        ports:
+        - containerPort: 8080

@@ -13,7 +13,7 @@ services:
       POSTGRES_PASSWORD: anilstraining_2022
   backend:
     build: ..
-    container_name: mybandscontainerregistry.azurecr.io/ftsbackendapp
+    container_name: mybandscontainerregistry.azurecr.io/feelthesteelwebpage-backend
     depends_on:
       - "db"
     ports:
