@@ -1,8 +1,9 @@
 import axios from "axios"
 
 const instance = axios.create({
-    baseURL : "http://localhost:8085",
+    baseURL : process.env.VUE_APP_FTS_BACKEND_URL,
 })
+
 instance.defaults.headers.common['Access-Control-Allow-Origin'] = '*'
 instance.defaults.headers.common['Access-Control-Allow-Methods'] = '*'
 /*instance.defaults.headers.common['Access-Control-Allow-Credentials'] = true*/

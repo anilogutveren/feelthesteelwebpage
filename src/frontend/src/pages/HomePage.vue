@@ -12,6 +12,9 @@
         <ul>
           {{ newsJson.news }}
         </ul>
+        <ul>
+          {{ musicians }}
+        </ul>
       </div>
     </div>
   </div>
@@ -27,20 +30,34 @@ export default {
   data() {
     return {
       admin: "",
-      newsList: []
+      newsList: [],
+      musicians: [],
+      backendUrl: process.env.VUE_APP_FTS_BACKEND_URL,
+      titleVueApp: process.env.VUE_APP_TITLE
     }
   },
-  created(){
-      let newsLink = "http://localhost:8085/news/latest"
-      customAxios.get(newsLink).then(response => {
-            let responseData = response.data;
-            console.log(responseData);
-            for (let key in responseData) {
-              this.newsList.push(responseData[key])
-            }
+  created() {
+    let newsLink = "/news/latest"
+    console.log(this.backendUrl)
+    console.log(this.titleVueApp)
+    customAxios.get(newsLink).then(response => {
+          let responseData = response.data;
+          console.log(responseData);
+          for (let key in responseData) {
+            this.newsList.push(responseData[key])
           }
-      )
-    }
+        }
+    )
+    let musiciansLink = "/musicians"
+    customAxios.get(musiciansLink).then(response => {
+          let responseData = response.data;
+          console.log(responseData);
+          for (let key in responseData) {
+            this.musicians.push(responseData)
+          }
+        }
+    )
+  }
 }
 </script>
 

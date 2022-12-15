@@ -81,7 +81,7 @@ class ProjectSecurityConfig() {
     @ConditionalOnProperty(value = ["security.jwt.enabled"], havingValue = "false")
     fun corsWebFilter(): CorsWebFilter {
         val corsConfig = CorsConfiguration()
-        corsConfig.allowedOrigins = listOf("http://localhost:8082")
+        corsConfig.allowedOrigins = listOf("http://localhost:8082", "http://frontend")
         corsConfig.maxAge = 80000L
         corsConfig.addAllowedMethod("*")
         corsConfig.addAllowedHeader("*")

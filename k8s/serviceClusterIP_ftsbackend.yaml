@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: backendpersonalpageClusterIP
+  name: backend-service
   namespace: nsfeelthesteel
 spec:
   type: ClusterIP
   selector:
-    app: backendpersonalpage
+    app: backend
   ports:
     - protocol: TCP
       port: 80

@@ -49,3 +49,6 @@ resilience4j:
             personalpage:
                 maxAttempts: 2
                 waitDuration: 10s
+clients:
+    blogpage:
+        basePath: "http://backendpersonalpage"
