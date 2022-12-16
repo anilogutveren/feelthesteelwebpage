@@ -16,6 +16,11 @@ spec:
       containers:
       - name: frontend
         image: mybandscontainerregistry.azurecr.io/feelthesteelfrontendapp:latest
+        env:
+          - name: VUE_APP_FTS_BACKEND_URL
+            value: "http://backend"
+          - name: VUE_APP_TITLE
+            value: "PRODUCTION"
         ports:
         - containerPort: 8080
 ---

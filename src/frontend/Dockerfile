@@ -9,6 +9,9 @@ WORKDIR /app
 # copy both 'package.json' and 'package-lock.json' (if available)
 COPY package*.json ./
 
+# install curl in the container for test purposes
+RUN apk --no-cache add curl
+
 # install project dependencies
 RUN npm install
 

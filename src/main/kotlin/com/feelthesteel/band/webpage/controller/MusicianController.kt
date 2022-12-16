@@ -25,9 +25,10 @@ class MusicianController(
     private val logger: Logger = LoggerFactory.getLogger(this.javaClass)
 
     @GetMapping("/musicians", produces = ["application/json"])
-    @CrossOrigin(origins = ["*"])
+    @CrossOrigin
     fun getAllMusicians(
-        @RequestHeader("X-TrackingId", required = true) trackingId: String
+        @RequestHeader("X-TrackingId", required = true) trackingId: String,
+        @RequestHeader("Access-Control-Allow-Origin") origin: String
     ): ResponseEntity<MutableList<MusicianEntity>> {
         return ResponseEntity.ok(musicianService.getAllMusicians())
     }

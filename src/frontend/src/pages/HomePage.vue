@@ -12,6 +12,8 @@
         <ul>
           {{ newsJson.news }}
         </ul>
+      </div>
+      <div class="card m-1">
         <ul>
           {{ musicians }}
         </ul>
@@ -52,9 +54,7 @@ export default {
     customAxios.get(musiciansLink).then(response => {
           let responseData = response.data;
           console.log(responseData);
-          for (let key in responseData) {
-            this.musicians.push(responseData)
-          }
+          this.musicians.push(responseData)
         }
     )
   }
