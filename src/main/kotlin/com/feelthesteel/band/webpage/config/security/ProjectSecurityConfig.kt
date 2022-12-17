@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.http.HttpMethod
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration
@@ -20,6 +21,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.web.SecurityFilterChain
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
 import org.springframework.web.cors.CorsConfiguration
+import org.springframework.web.cors.CorsConfigurationSource
 import org.springframework.web.cors.reactive.CorsWebFilter
 import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource
 
@@ -52,8 +54,9 @@ class ProjectSecurityConfig() {
         // Disable Frame Options for Vue Js frontend
         http.headers().frameOptions().disable()
 
-        http.cors().disable().csrf().disable()
+        http.cors().configurationSource { corsConfig().applyPermitDefaultValues() }.and().csrf().disable()
             .authorizeRequests()
+            .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
             .antMatchers("/login").permitAll()
             .antMatchers("/").permitAll()
             .antMatchers("/h2-console").permitAll()
@@ -68,6 +71,7 @@ class ProjectSecurityConfig() {
 
         http.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter::class.java)
 
+
         return http.build()
     }
 
@@ -80,35 +84,35 @@ class ProjectSecurityConfig() {
     @Bean
     @ConditionalOnProperty(value = ["security.jwt.enabled"], havingValue = "false")
     fun corsWebFilter(): CorsWebFilter {
-        val corsConfig = CorsConfiguration()
-        corsConfig.maxAge = 80000L
-        corsConfig.addAllowedOrigin("*")
-        corsConfig.addAllowedMethod("*")
-        corsConfig.addAllowedHeader("*")
+        val corsConfig = corsConfig()
         val source = UrlBasedCorsConfigurationSource()
         source.registerCorsConfiguration("/**", corsConfig)
         return CorsWebFilter(source)
     }
-}
-    /*    @Bean("bcrypt")
-        fun getBCryptPasswordEncoder(): BCryptPasswordEncoder {
-            return BCryptPasswordEncoder(16)
-        }
 
-        @Bean("noops")
-        fun getNoOpPasswordEncoder(): PasswordEncoder {
-            return NoOpPasswordEncoder.getInstance()
-        }
-
-    @Bean
-    @ConditionalOnProperty(value = ["security.jwt.enabled"], havingValue = "false")
-    fun corsWebFilter(): CorsWebFilter {
+    private fun corsConfig(): CorsConfiguration {
         val corsConfig = CorsConfiguration()
-        corsConfig.allowedOrigins = listOf("http://localhost:8082")
         corsConfig.maxAge = 80000L
+        corsConfig.addAllowedOriginPattern("*")
+        corsConfig.allowCredentials = true
         corsConfig.addAllowedMethod("*")
+        corsConfig.addAllowedMethod("OPTIONS");
+        corsConfig.addAllowedMethod("GET");
+        corsConfig.addAllowedMethod("PUT");
+        corsConfig.addAllowedMethod("POST");
+        corsConfig.addAllowedMethod("DELETE");
+        corsConfig.addAllowedMethod("PATCH");
         corsConfig.addAllowedHeader("*")
-        val source = UrlBasedCorsConfigurationSource()
-        source.registerCorsConfiguration("/**", corsConfig)
-        return CorsWebFilter(source)
-    }*/
+        return corsConfig
+    }
+}
+/*    @Bean("bcrypt")
+    fun getBCryptPasswordEncoder(): BCryptPasswordEncoder {
+        return BCryptPasswordEncoder(16)
+    }
+
+    @Bean("noops")
+    fun getNoOpPasswordEncoder(): PasswordEncoder {
+        return NoOpPasswordEncoder.getInstance()
+    }
+*/
