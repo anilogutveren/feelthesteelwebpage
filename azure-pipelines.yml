@@ -16,6 +16,7 @@ variables:
   imageRepository: 'ftsbackendapp'
   containerRegistry: 'mybandscontainerregistry.azurecr.io'
   dockerfilePath: '**/Dockerfile'
+  dockerFileContext: '**'
   tag: '$(Build.BuildId)'
   imagePullSecret: 'mybandscontainerregistry7ea3-auth'
   # Agent VM image name
@@ -29,9 +30,19 @@ stages:
     - job: BuildMaven
       displayName: BuildMaven
       steps:
+        - task: Cache@2
+          displayName: 'Cache Maven local repo'
+          inputs:
+            key: 'maven | "$(Agent.OS)" | **/pom.xml'
+            restoreKeys: |
+              maven | "$(Agent.OS)"
+              maven
+            path: $(MAVEN_CACHE_FOLDER)
         - task: Maven@4
           inputs:
             mavenPomFile: 'pom.xml'
+            goals: 'verify'
+            options: '--batch-mode -Dmaven.repo.local=$(MAVEN_CACHE_FOLDER)'
             publishJUnitResults: true
             testResultsFiles: '**/surefire-reports/TEST-*.xml'
             javaHomeOption: 'JDKVersion'
@@ -54,6 +65,7 @@ stages:
         command: buildAndPush
         repository: $(imageRepository)
         dockerfile: $(dockerfilePath)
+        buildContext: $(dockerFileContext)
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
