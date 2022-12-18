@@ -1,14 +1,14 @@
 # Deploy to Azure Kubernetes Service
 # Build and push image to Azure Container Registry; Deploy to Azure Kubernetes Service
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+variables:
+  MAVEN_CACHE_FOLDER: $(Pipeline.Workspace)/.m2/repository
 
 trigger:
 - master
 
 resources:
 - repo: self
-
-variables:
 
   # Container registry service connection established during pipeline creation
   dockerRegistryServiceConnection: 'a520391d-fc9f-4b8d-98d1-6346bf7f8631'
@@ -23,6 +23,22 @@ variables:
 
 
 stages:
+- stage: MavenBuild
+  displayName: Maven Build stage
+  jobs:
+    - job: BuildMaven
+      displayName: BuildMaven
+      steps:
+        - task: Maven@4
+          inputs:
+            mavenPomFile: 'pom.xml'
+            publishJUnitResults: true
+            testResultsFiles: '**/surefire-reports/TEST-*.xml'
+            javaHomeOption: 'JDKVersion'
+            mavenVersionOption: 'Default'
+            mavenAuthenticateFeed: false
+            effectivePomSkip: false
+            sonarQubeRunAnalysis: false 
 - stage: Build
   displayName: Build stage
   jobs:
