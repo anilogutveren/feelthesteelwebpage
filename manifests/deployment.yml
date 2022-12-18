@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: ftsbackendapp 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ftsbackendapp
+  template:
+    metadata:
+      labels:
+        app: ftsbackendapp 
+    spec:
+      containers:
+        - name: ftsbackendapp 
+          image: mybandscontainerregistry.azurecr.io/ftsbackendapp
+          ports:
+          - containerPort: 80
