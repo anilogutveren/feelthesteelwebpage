@@ -6,11 +6,10 @@ RUN apt-get update
 RUN useradd appuser --gid=100 --uid=1337 -m
 
 # copy application to workspace
-RUN cp target/webpage-1.jar /var/opt/app.jar
+COPY target/*.jar app.jar
 
 USER appuser
 
 CMD ["java", \
-"-XX:MaxRAMPercentage=75", \
 "-XX:+PrintCommandLineFlags", \
-"-jar","/var/opt/app.jar"]
+"-jar","app.jar"]
