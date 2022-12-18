@@ -16,6 +16,7 @@ variables:
   imageRepository: 'ftsbackendapp'
   containerRegistry: 'mybandscontainerregistry.azurecr.io'
   dockerfilePath: '**/Dockerfile'
+  dockerFileContext: '**'
   tag: '$(Build.BuildId)'
   imagePullSecret: 'mybandscontainerregistry7ea3-auth'
   # Agent VM image name
@@ -64,6 +65,7 @@ stages:
         command: buildAndPush
         repository: $(imageRepository)
         dockerfile: $(dockerfilePath)
+        buildContext: $(dockerFileContext)
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
