@@ -6,7 +6,7 @@ RUN apt-get update
 RUN useradd appuser --gid=100 --uid=1337 -m
 
 # copy application to workspace
-COPY target/webpage-1.jar /var/opt/app.jar
+RUN cp target/webpage-1.jar /var/opt/app.jar
 
 USER appuser
 
