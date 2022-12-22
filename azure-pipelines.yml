@@ -55,7 +55,7 @@ stages:
           inputs:
             targetType: 'inline'
             script: |
-              pwd
+              ls -la
 - stage: Build
   displayName: Build stage
   jobs:
