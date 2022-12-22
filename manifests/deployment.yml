@@ -1,19 +1,67 @@
-apiVersion : apps/v1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ftsbackendapp 
+  name: frontend
+  namespace: goodbyeprophecy
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
-      app: ftsbackendapp
+      app: frontend
   template:
     metadata:
       labels:
-        app: ftsbackendapp 
+        app: frontend
     spec:
       containers:
-        - name: ftsbackendapp 
-          image: mybandscontainerregistry.azurecr.io/ftsbackendapp
-          ports:
-          - containerPort: 80
+      - name: frontend
+        image: mybandscontainerregistry.azurecr.io/feelthesteelfrontendapp:latest
+        env:
+          - name: VUE_APP_FTS_BACKEND_URL
+            value: "http://backend"
+          - name: VUE_APP_TITLE
+            value: "PRODUCTION"
+        ports:
+        - containerPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+  namespace: goodbyeprophecy
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - name: backend
+        image: mybandscontainerregistry.azurecr.io/ftsbackendapp:latest
+        ports:
+        - containerPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backendpersonalpage
+  namespace: goodbyeprophecy
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: backendpersonalpage
+  template:
+    metadata:
+      labels:
+        app: backendpersonalpage
+    spec:
+      containers:
+      - name: backendpersonalpage
+        image: mybandscontainerregistry.azurecr.io/personalpage:latest
+        ports:
+        - containerPort: 8080

@@ -51,39 +51,27 @@ stages:
             mavenAuthenticateFeed: true
             effectivePomSkip: false
             sonarQubeRunAnalysis: false 
-
-- stage: Build
-  displayName: Build stage
-  jobs:
-  - job: Build
-    displayName: Build
-    pool:
-      vmImage: $(vmImageName)
-    steps:
-    - task: Bash@3
-      inputs:
-        targetType: 'inline'
-        script: |
-          ls -la
-          ls -la target    
-    - task: Docker@2
-      displayName: Build and push an image to container registry
-      inputs:
-        command: buildAndPush
-        repository: $(imageRepository)
-        dockerfile: $(dockerfilePath)
-        buildContext: $(dockerFileContext)
-        containerRegistry: $(dockerRegistryServiceConnection)
-        tags: |
-          $(tag)
-
-    - upload: manifests
-      artifact: manifests
+        - task: Bash@3
+          inputs:
+            targetType: 'inline'
+            script: |
+              ls -la
+              ls -la target    
+        - task: Docker@2
+          displayName: Build and push an image to container registry
+          inputs:
+            command: buildAndPush
+            repository: $(imageRepository)
+            dockerfile: $(dockerfilePath)
+            buildContext: $(dockerFileContext)
+            containerRegistry: $(dockerRegistryServiceConnection)
+            tags: |
+              $(tag)
+        - upload: manifests
+          artifact: manifests
 
 - stage: Deploy
   displayName: Deploy stage
-  dependsOn: Build
-
   jobs:
   - deployment: Deploy
     displayName: Deploy
