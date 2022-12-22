@@ -51,11 +51,7 @@ stages:
             mavenAuthenticateFeed: true
             effectivePomSkip: false
             sonarQubeRunAnalysis: false 
-        - task: Bash@3
-          inputs:
-            targetType: 'inline'
-            script: |
-              ls -la
+
 - stage: Build
   displayName: Build stage
   jobs:
@@ -64,6 +60,12 @@ stages:
     pool:
       vmImage: $(vmImageName)
     steps:
+    - task: Bash@3
+      inputs:
+        targetType: 'inline'
+        script: |
+          ls -la
+          ls -la target    
     - task: Docker@2
       displayName: Build and push an image to container registry
       inputs:
