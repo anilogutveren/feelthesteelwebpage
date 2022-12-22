@@ -41,7 +41,7 @@ stages:
         - task: Maven@4
           inputs:
             mavenPomFile: 'pom.xml'
-            goals: 'verify'
+            goals: 'package'
             options: '--batch-mode -Dmaven.repo.local=$(MAVEN_CACHE_FOLDER)'
             publishJUnitResults: true
             testResultsFiles: '**/surefire-reports/TEST-*.xml'
