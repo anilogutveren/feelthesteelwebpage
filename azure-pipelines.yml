@@ -51,6 +51,11 @@ stages:
             mavenAuthenticateFeed: true
             effectivePomSkip: false
             sonarQubeRunAnalysis: false 
+        - task: Bash@3
+          inputs:
+            targetType: 'inline'
+            script: |
+              pwd
 - stage: Build
   displayName: Build stage
   jobs:
