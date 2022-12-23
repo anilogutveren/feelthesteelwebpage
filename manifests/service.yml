@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: frontendClusterIP
+  name: frontend-clusterip-svc
   namespace: goodbyeprophecy
 spec:
   type: ClusterIP
@@ -15,7 +15,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: backend-service
+  name: backend-clusterip-service
   namespace: goodbyeprophecy
 spec:
   type: ClusterIP
@@ -29,7 +29,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: backendpersonalpageClusterIP
+  name: backendpersonalpage-clusterip-svc
   namespace: goodbyeprophecy
 spec:
   type: ClusterIP
@@ -43,7 +43,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: frontendlb
+  name: frontend-loadbalancer-svc
   namespace: goodbyeprophecy
 spec:
   type: LoadBalancer
