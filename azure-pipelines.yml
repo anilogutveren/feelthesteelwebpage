@@ -77,7 +77,7 @@ stages:
     displayName: Deploy
     pool:
       vmImage: $(vmImageName)
-    environment: 'anilogutverenfeelthesteelwebpage.nsfeelthesteel'
+    environment: 'anilogutverenfeelthesteelwebpage-2095.goodbyeprophecy'
     strategy:
       runOnce:
         deploy:
