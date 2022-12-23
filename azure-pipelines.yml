@@ -42,7 +42,7 @@ stages:
           inputs:
             mavenPomFile: 'pom.xml'
             goals: 'package'
-            options: '--batch-mode -Dmaven.repo.local=$(MAVEN_CACHE_FOLDER)'
+            options: '--batch-mode -Dmaven.repo.local=$(MAVEN_CACHE_FOLDER) -DskipTests'
             publishJUnitResults: true
             testResultsFiles: '**/surefire-reports/TEST-*.xml'
             javaHomeOption: 'JDKVersion'
